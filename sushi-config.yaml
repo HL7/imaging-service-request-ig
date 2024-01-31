@@ -1,0 +1,66 @@
+# ╭─────────────────────────────────ImplementationGuide-fish.json──────────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see:                                                                    │
+# │  https://fshschool.org/docs/sushi/configuration/#full-configuration                            │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: hl7.fhir.uv.imaging-service-request-ig
+canonical: http://hl7.org/fhir/imaging-service-request-ig
+version: 0.1.0
+name: FHIRImagingServiceRequestIG
+title: FHIR Imaging ServiceRequest Profile IG
+status: draft
+publisher: 
+  - name: HL7 Imaging Integration Working Group
+  - url: http://www.hl7.org/Special/committees/imagemgt/index.cfm
+contact:
+  - name: HL7 Imaging Integration Workgroup
+    telecom:
+      - system: url
+        value: http://www.hl7.org/Special/committees/imagemgt/index.cfm
+  - name: Jonathan Whitby
+    telecom:
+      - system: email
+        value: jonathan.whitby@mi.medical.canon
+  - name: Brian Bialecki
+    telecom:
+      - system: email
+        value: bbialecki@acr.org
+description: Profile FHIR ServiceRequest and related resources to fulfill the image ordering use cases.
+jurisdiction: "http://unstats.un.org/unsd/methods/m49/m49.htm#001"
+license: CC0-1.0
+fhirVersion: 5.0.0
+copyrightYear: 2021+
+releaseLabel: ci-build
+dependencies:
+  fhir.dicom:
+    uri: http://fhir.org/packages/fhir.dicom
+    version: 2023.1.20230123
+parameters:
+  show-inherited-invariants: false
+  generate-turtle: false
+  usage-stats-opt-out: true
+
+pages:
+  index.md:
+    title: Home
+    generation: markdown
+  background.md:
+    title: Background
+    generation: markdown
+#   architecture.md:
+#     title: Architecture
+#     generation: markdown
+#   mapping.md:
+#     title: Mapping
+#     generation: markdown
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  IG Home: index.html
+  Contents: toc.html
+  Background: background.html
+  Architecture: architecture.html
+  Mapping: mapping.html
+  Artifact Index: artifacts.html
