@@ -13,3 +13,17 @@ Description:    "DICOM MWL Scheduled Procedure Step Mapping to Task"
 * ^abstract = true
 * insert DICOMMWLStructureDefinitionContent
 
+// Associated RequestedProcedure
+* basedOn ^slicing.discriminator.type = #type
+* basedOn ^slicing.discriminator.path = "reference"
+* basedOn ^slicing.rules = #open
+* basedOn ^slicing.description = "Requested Procedure"
+
+* basedOn contains requestedProcedureRef 1..1
+* basedOn[requestedProcedureRef] only Reference(ImagingRequestedProcedureProfile)
+
+// Associated Patient
+* for only Reference(ImagingPatientProfile)
+
+// Associated Visit
+* encounter only Reference(ImagingVisitProfile)

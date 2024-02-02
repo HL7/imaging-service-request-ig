@@ -9,10 +9,9 @@ and describes the use cases supported by this implementation guide.
 6. [References](#references) - Useful references
 
 ### Problem<a name="problem"></a>
+The DICOM Modality Worklist (MWL) service provides DICOM aquisition devices with information from the orderig system (patient, visit, procedure, etc.).
 
-DICOM Structured Report (DICOM SR) is a standard for recording clinical imaging observations made regarding a diagnostic or interventional imaging procedure. Imaging Observations are made by humans, such as a sonographer making measurements on recently acquired ultrasound image, a Radiologist recording observations on suspected lesions, or by a machine, such as an automated AI Algorithm providing qualitative and quantitative observations.
-
-DICOM SR is widely adopted by Imaging-based devices and IT systems. Non-imaging based Healthcare IT Systems, generally, do not support DICOM SR. Non-imaging healthcare systems support HL7 standards, such as FHIR. HL7 has defined Observations as the standardized method for recording clinical observations. Bridging the two standards for clinical imaging observations is necessary for interoperability between these type of systems.
+The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from requivalent FHIR resources is not.
 
 ### Scope<a name="scope"></a>
 
@@ -68,7 +67,7 @@ The following terms and acronyms are used within the Radiation Dose Summary IG:
 ### References<a name="references"></a>
 
 1. DICOM,[DICOM PS3.4 Section K.6: Modality Worklist SOP Class](https://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_K.6.html)
-2. IHE Radiology (RAD), [Technical Framework Supplement, AI Results (AIR)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_AIR.pdf)
+2. IHE Radiology (RAD), [HL7 Order Mapping to DICOM MWL)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol2x.pdf)
 3. HL7 IG [HL7 Version 2 to FHIR](https://build.fhir.org/ig/HL7/v2-to-fhir/)
 4. HL7 IG [Clinical Order Worfklows Implementation Guide](https://build.fhir.org/ig/HL7/fhir-cow-ig/)
 5. HL7 IG [Order Catalog Implementation Guide](https://build.fhir.org/ig/HL7/fhir-order-catalog/)

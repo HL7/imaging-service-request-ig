@@ -13,3 +13,6 @@ Description:    "DICOM MWL Visit Mapping to Encounter"
 * ^abstract = true
 * insert DICOMMWLStructureDefinitionContent
 
+// Associated Patient
+//* subject contains imagingPatientRef 1..1
+* subject only Reference(ImagingPatientProfile)

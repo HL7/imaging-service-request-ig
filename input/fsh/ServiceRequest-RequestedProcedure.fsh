@@ -13,3 +13,20 @@ Description:    "DICOM MWL Requested Procedure Mapping to ServiceRequest"
 * ^abstract = true
 * insert DICOMMWLStructureDefinitionContent
 
+// Associated ImagingServiceRequest
+* basedOn ^slicing.discriminator.type = #type
+* basedOn ^slicing.discriminator.path = "reference"
+* basedOn ^slicing.rules = #open
+* basedOn ^slicing.description = "ImagingServiceRequest"
+
+* basedOn contains imagingServiceRequestRef 1..1
+* basedOn[imagingServiceRequestRef] only Reference(ImagingServiceRequestProfile)
+
+// Associated Patient
+* subject only Reference(ImagingPatientProfile)
+
+// Associated Visit
+* encounter only Reference(ImagingVisitProfile)
+
+// Mapping to do
+// code -> OBR-44

@@ -4,16 +4,16 @@
 # │  https://fshschool.org/docs/sushi/configuration/#full-configuration                            │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.imaging-service-request-ig
-canonical: http://hl7.org/fhir/imaging-service-request-ig
+canonical: http://hl7.org/fhir/uv/imaging-service-request-ig
 version: 0.1.0
 name: FHIRImagingServiceRequestIG
 title: FHIR Imaging ServiceRequest Profile IG
 status: draft
 publisher: 
-  - name: HL7 Imaging Integration Working Group
+  - name: HL7 International / Imaging Integration
   - url: http://www.hl7.org/Special/committees/imagemgt/index.cfm
 contact:
-  - name: HL7 Imaging Integration Workgroup
+  - name: HL7 International / Imaging Integration
     telecom:
       - system: url
         value: http://www.hl7.org/Special/committees/imagemgt/index.cfm
@@ -34,11 +34,21 @@ releaseLabel: ci-build
 dependencies:
   fhir.dicom:
     uri: http://fhir.org/packages/fhir.dicom
-    version: 2023.1.20230123
+    version: 2024.1.20240120
 parameters:
   show-inherited-invariants: false
-  generate-turtle: false
   usage-stats-opt-out: true
+  apply-contact: true
+  apply-context: true
+  apply-copyright: true
+  apply-jurisdiction: true
+  apply-license: true
+  apply-publisher: true
+  apply-version: true
+
+extension:
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg
+    valueCode: ii
 
 pages:
   index.md:
@@ -61,6 +71,6 @@ menu:
   IG Home: index.html
   Contents: toc.html
   Background: background.html
-  Architecture: architecture.html
-  Mapping: mapping.html
-  Artifact Index: artifacts.html
+#  Architecture: architecture.html
+#  Mapping: mapping.html
+#  Artifact Index: artifacts.html
