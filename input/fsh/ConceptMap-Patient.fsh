@@ -1,4 +1,4 @@
-Instance:       FHIR-to-DICOM-:Patient
+Instance:       FHIR-to-DICOM-Patient
 InstanceOf:     ConceptMap
 Title:          "ConceptMap - Populating DICOM Patient from FHIR"
 Usage:          #definition

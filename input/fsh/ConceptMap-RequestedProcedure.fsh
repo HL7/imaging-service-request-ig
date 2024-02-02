@@ -3,8 +3,8 @@ InstanceOf:     ConceptMap
 Title:          "ConceptMap - Populating DICOM Requested Procedure from FHIR"
 Usage:          #definition
 
-* id =  "fhir-to-dicom-requested-procedure-step"
-* name = "FHIRToDICOMRequestedProcedureStep"
+* id =  "fhir-to-dicom-requested-procedure"
+* name = "FHIRToDICOMRequestedProcedure"
 * description = "Populating DICOM Requested Procedure from FHIR"
 * status = #draft
 * experimental = true
