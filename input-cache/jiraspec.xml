@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/imaging-service-request/2025Jan" ciUrl="https://build.fhir.org/ig/HL7/dicom-sr" defaultVersion="0.1.0" defaultWorkgroup="ii" gitUrl="https://github.com/HL7/imaging-service-request" url="http://hl7.org/fhir/uv/imaging-service-request">
+  <version code="current" url="https://build.fhir.org/ig/HL7/uv/imaging-service-request"/>
+  <version code="0.1.0" url="http://hl7.org/fhir/uv/imaging-service-request/2025Jan"/>
+  <artifactPageExtension value="-definitions"/>
+  <!-- <artifactPageExtension value="-examples"/> -->
+  <artifactPageExtension value="-mappings"/>
+  <artifact id="ConceptMap/FHIRToDICOMImagingServiceRequest" key="ConceptMap-ImagingServiceRequest" name="ConceptMap - Populating DICOM Imaging Service Request from FHIR"/>
+  <artifact id="ConceptMap/FHIRToDICOMPatient" key="ConceptMap-Patient" name="ConceptMap - Populating DICOM Patient from FHIR"/>
+  <artifact id="ConceptMap/FHIRToDICOMRequestedProcedure" key="ConceptMap-RequestedProcedure" name="ConceptMap - Populating DICOM Requested Procedure from FHIR"/>
+  <artifact id="ConceptMap/FHIRToDICOMScheduledProcedureStep" key="ConceptMap-ScheduledProcedureStep" name="ConceptMap - Populating Scheduled Procedure Step from FHIR"/>
+  <artifact id="ConceptMap/FHIRToDICOMVisit" key="ConceptMap-Visit" name="ConceptMap - Populating DICOM Visit from FHIR"/>
+  <artifact id="StructureDefinition/ScheduledStation" key="Device-ScheduledStation" name="Device - DICOM Scheduled Station Mapping"/>
+  <artifact id="StructureDefinition/ImagingVisit" key="Encounter-Visit" name="Encounter - DICOM MWL Visit Mapping"/>
+  <artifact id="StructureDefinition/ImagingPatient" key="Patient" name="Patient - DICOM MWL Patient Mapping"/>
+  <artifact id="StructureDefinition/ImagingServiceRequest" key="ServiceRequest-ImagingServiceRequest" name="ServiceRequest - DICOM MWL Imaging Service Request Mapping"/>
+  <artifact id="StructureDefinition/ImagingRequestedProcedure" key="ServiceRequest-ImagingRequestedProcedure" name="ServiceRequest - DICOM MWL Requested Procedure Mapping"/>
+  <artifact id="StructureDefinition/ImagingScheduledProcedureStep" key="Task-ImagingScheduledProcedureStep" name="Task - DICOM MWL Scheduled Procedure Step Mapping"/>
+  <page key="NA" name="(NA)"/>
+  <page key="many" name="(many)"/>
+  <page key="architecture" name="Architecture"/>
+  <page key="artifacts" name="Artifacts Summary"/>
+  <page key="background" name="Background"/>
+  <page key="index" name="Home"/>
+  <page key="profiles" name="Profiles"/>
+  <page key="toc" name="Table of Contents"/>
+</specification>

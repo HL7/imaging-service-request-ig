@@ -9,9 +9,9 @@ and describes the use cases supported by this implementation guide.
 6. [References](#references) - Useful references
 
 ### Problem<a name="problem"></a>
-The DICOM Modality Worklist (MWL) service provides DICOM aquisition devices with information from the orderig system (patient, visit, procedure, etc.).
+The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices with information from the ordering system (patient, visit, procedure, etc.).
 
-The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from requivalent FHIR resources is not.
+The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from equivalent FHIR resources is not.
 
 ### Scope<a name="scope"></a>
 
