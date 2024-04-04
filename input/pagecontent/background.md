@@ -37,7 +37,7 @@ This Implementation Guide is intended for
 ### Use cases<a name="use-cases"></a>
 Two use cases were identified.
 
-#### Use case 1: Populated DICOM MWL C-FIND Responses from FHIR
+#### Use case 1: Populate DICOM MWL C-FIND Responses from FHIR
 
 #### Use case 2: FHIR-based MWL query
 
