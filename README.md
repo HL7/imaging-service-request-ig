@@ -9,6 +9,6 @@ The HL7 Project Summary is under [this link](https://www.hl7.org/special/Committ
 
 The pre-analysis of this work is under [this link](https://confluence.hl7.org/display/IMIN/Imaging+Service+Request+IG+-+Outline+Draft).
 
-The CI build is under [this link](https://build.fhir.org/ig/HL7/imaging-service-request/).
+The CI build is under [this link](https://build.fhir.org/ig/HL7/imaging-service-request-ig/).
 
 See linked PSS: [PSS-2135](https://jira.hl7.org/browse/PSS-2135).

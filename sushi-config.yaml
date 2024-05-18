@@ -34,7 +34,7 @@ releaseLabel: ci-build
 dependencies:
   fhir.dicom:
     uri: http://fhir.org/packages/fhir.dicom
-    version: 2024.1.20240120
+    version: 2024.2.20240331
 parameters:
   show-inherited-invariants: false
   usage-stats-opt-out: true
@@ -73,4 +73,4 @@ menu:
   Background: background.html
 #  Architecture: architecture.html
 #  Mapping: mapping.html
-#  Artifact Index: artifacts.html
+  Artifact Index: artifacts.html
