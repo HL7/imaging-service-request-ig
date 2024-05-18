@@ -16,3 +16,19 @@ Description:    "DICOM MWL Visit Mapping to Encounter"
 // Associated Patient
 //* subject contains imagingPatientRef 1..1
 * subject only Reference(ImagingPatientProfile)
+
+Instance: ImagingVisit-Example
+InstanceOf: ImagingVisitProfile
+Usage: #example
+Description: "An example of the Encounter resource included in a MWL response."
+
+* id = "example-imaging-visit"
+
+* status = #in-progress
+* identifier
+  * type
+    * coding
+      * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+      * code = #VN "Visit Number"
+  * system = "http://goodhealth.org/vn"
+  * value = "V12345"
