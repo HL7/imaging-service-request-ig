@@ -13,6 +13,8 @@ Description:    "DICOM MWL Requested Procedure Mapping to ServiceRequest"
 * ^abstract = true
 * insert DICOMMWLStructureDefinitionContent
 
+* intent = #order
+
 // Associated ImagingServiceRequest
 * basedOn ^slicing.discriminator.type = #type
 * basedOn ^slicing.discriminator.path = "reference"
@@ -30,3 +32,27 @@ Description:    "DICOM MWL Requested Procedure Mapping to ServiceRequest"
 
 // Mapping to do
 // code -> OBR-44
+
+Instance: ImagingRequestedProcedure-Example
+InstanceOf: ImagingRequestedProcedureProfile
+Usage: #example
+Description: "An example of a DICOM ImagingRequestedProcedure in FHIR."
+
+* id = "example-imaging-requested-procedure"
+
+* identifier
+  * type
+    * text = "Requested Procedure ID"
+  * system = "http://goodhealth.org/requestedporcedure"
+  * value = "RP12345"
+
+* category = http://snomed.info/sct#363679005 "Imaging"
+* status = #active
+* intent = #order
+
+* subject
+  * reference = "Patient/example-imaging-patient"
+* encounter
+  * reference = "Encounter/example-imaging-encounter"
+* basedOn
+  * reference = "ServiceRequest/example-imaging-service-request"

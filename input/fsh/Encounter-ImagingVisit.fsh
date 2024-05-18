@@ -32,3 +32,5 @@ Description: "An example of the Encounter resource included in a MWL response."
       * code = #VN "Visit Number"
   * system = "http://goodhealth.org/vn"
   * value = "V12345"
+* subject
+  * reference = "Patient/example-imaging-patient"

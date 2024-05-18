@@ -55,7 +55,7 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 Instance: ImagingServiceRequest-Example
 InstanceOf: ImagingServiceRequestProfile
 Usage: #example
-Description: "An example of a request for a service to create an image of a body part."
+Description: "An example of a DICOM ImagingServiceRequest in FHIR."
 
 * id = "example-imaging-service-request"
 
@@ -82,15 +82,10 @@ Description: "An example of a request for a service to create an image of a body
   * value = "F12345"
 
 * category = http://snomed.info/sct#363679005 "Imaging"
-
-* subject
-  * reference = "ImagingPatientProfile/example-imaging-patient"
-  * display = "P. Example"
-
 * status = #active
-
 * intent = #order
 
+* subject
+  * reference = "Patient/example-imaging-patient"
 * encounter
-  * reference = "ImagingVisitProfile/example-imaging-encounter"
-  * display = "Encounter with patient P. Example on 2024-04-02"
+  * reference = "Encounter/example-imaging-encounter"
