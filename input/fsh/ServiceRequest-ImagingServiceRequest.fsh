@@ -45,8 +45,6 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 // Associated Patient
 * subject only Reference(ImagingPatientProfile)
 
-// Associated Visit
-* encounter only Reference(ImagingVisitProfile)
 
 // Mapping to be created
 // code -> OBR-4
@@ -86,4 +84,3 @@ Description: "An example of a DICOM ImagingServiceRequest in FHIR."
 * intent = #order
 
 * subject = Reference(ImagingPatient-Example)
-* encounter = Reference(ImagingVisit-Example)
