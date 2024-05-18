@@ -22,7 +22,7 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 * identifier contains accessionNumber 1..1
 * identifier[accessionNumber].type = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN "Accession ID"
 * identifier[accessionNumber].value 1..1
-* identifier[accessionNumber] ^short = "Accession Number"
+* identifier[accessionNumber] ^short = "Accession ID"
 
 * identifier contains placerOrder 0..1
 * identifier[placerOrder].type = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC "Placer Identifier"
