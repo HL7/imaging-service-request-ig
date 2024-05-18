@@ -39,7 +39,7 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 
 * category = http://snomed.info/sct#363679005 "Imaging"
 
-// * code TODO -- set LOINC codeset as example codeset instewad of SNOMET CT (see https://build.fhir.org/imagingstudy-definitions.html#ImagingStudy.procedure)
+// * code TODO -- set LOINC codeset as example codeset instead of SNOMED CT (see https://build.fhir.org/imagingstudy-definitions.html#ImagingStudy.procedure)
 
 // Associated Patient
 * subject only Reference(ImagingPatientProfile)
