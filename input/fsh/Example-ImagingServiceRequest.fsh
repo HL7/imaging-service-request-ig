@@ -1,5 +1,5 @@
 Instance: ImagingServiceRequest-Example
-InstanceOf: ImagingServiceRequest
+InstanceOf: ImagingServiceRequestProfile
 Usage: #Example
 Description: "An example of a request for a service to create an image of a body part."
 
