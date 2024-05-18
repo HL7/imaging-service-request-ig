@@ -1,6 +1,6 @@
 Instance:       FHIR-to-DICOM-Visit
 InstanceOf:     ConceptMap
-Title:          "ConceptMap - Populating DICOM Scheduled Procedure Step from FHIR"
+Title:          "ConceptMap - Populating DICOM Visit from FHIR"
 Usage:          #definition
 
 * id =  "fhir-to-dicom-visit"
