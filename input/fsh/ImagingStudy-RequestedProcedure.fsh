@@ -21,8 +21,8 @@ Description:    "DICOM MWL Requested Procedure Mapping to ImagingStudy"
 * identifier ^slicing.ordered = false
 * identifier ^slicing.description = "DICOM Study Instance UID"
 
-* identifier contains accessionNumber 1..1
-* identifier[accessionNumber].system = "urn:dicom:uid"
+* identifier contains studyInstanceUid 1..1
+* identifier[studyInstanceUid].system = "urn:dicom:uid"
 
 // Associated ImagingServiceRequest
 * basedOn ^slicing.discriminator.type = #type
@@ -47,7 +47,7 @@ Description: "An example of ImagingStudy content in a FHIR MWL response."
 
 * id = "example-imaging-study-requested-procedure"
 
-* identifier
+* identifier[studyInstanceUid]
   * system = "urn:dicom:uid"
   * value = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343004"
 

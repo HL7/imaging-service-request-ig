@@ -55,4 +55,4 @@ Description: "An example of a DICOM ImagingRequestedProcedure in FHIR."
 * encounter
   * reference = "ImagingVisitProfile/example-imaging-encounter"
 * basedOn
-  * reference = "ImagingServiceRequestProfile/example-imaging-service-request"
+  * reference = "ImagingServiceRequestProfile       /example-imaging-service-request"

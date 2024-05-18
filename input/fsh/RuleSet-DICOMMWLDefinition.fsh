@@ -7,8 +7,7 @@ RuleSet: DICOMMWLStructureDefinitionContent
 * ^publisher = "HL7 International"
 * ^contact[0].name = "HL7 International / Imaging Integration"
 * ^contact[0].telecom[0].system = #url
-* ^contact[0].telecom[0].value = "http://www.hl7.org/Special/committees/imagemgt/index.cfm"
-* ^contact[0].url[0].value = "http://www.hl7.org/Special/committees/imagemgt"
+* ^contact[0].telecom[0].value = "http://www.hl7.org/Special/committees/imagemgt"
 * ^contact[1].name = "Brian Bialecki"
 * ^contact[1].telecom[0].system = #email
 * ^contact[1].telecom[0].value = "mailto:bbialecki@acr.org"
