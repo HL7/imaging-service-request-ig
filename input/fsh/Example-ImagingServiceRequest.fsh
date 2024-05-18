@@ -1,24 +1,24 @@
 Instance: ImagingServiceRequest-Example
 InstanceOf: ImagingServiceRequestProfile
-Usage: #Example
+Usage: #example
 Description: "An example of a request for a service to create an image of a body part."
 
 * id = "imaging-service-request-example"
 
 * identifier[accessionNumber]
-* identifier[accessionNumber].type
-* identifier[accessionNumber].type.coding[0]
-* identifier[accessionNumber].type.coding[0].system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-* identifier[accessionNumber].type.coding[0].code = #ACSN "Accession Number"
-* identifier[accessionNumber].system = "http://goodhealth.org/imaging-request"
-* identifier[accessionNumber].value = "A12345"
+  * type
+    * coding
+      * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+      * code = #ACSN "Accession Number"
+  * system = "http://goodhealth.org/imaging-request"
+  * value = "A12345"
 * identifier[placerOrder]
-* identifier[placerOrder].type
-* identifier[placerOrder].type.coding[0]
-* identifier[placerOrder].type.coding[0].system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-* identifier[placerOrder].type.coding[0].code = #PLAC "Placer Identifier"
-* identifier[placerOrder].system = "http://goodhealth.org/imaging-request"
-* identifier[placerOrder].value = "P12345"
+  * type
+    * coding
+      * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+      * code = #PLAC "Placer Identifier"
+  * system = "http://goodhealth.org/imaging-request"
+  * value = "P12345"
 * identifier[fillerOrder]
 * identifier[fillerOrder].type
 * identifier[fillerOrder].type.coding[0]
