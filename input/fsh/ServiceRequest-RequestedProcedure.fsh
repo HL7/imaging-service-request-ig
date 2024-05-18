@@ -51,8 +51,8 @@ Description: "An example of a DICOM ImagingRequestedProcedure in FHIR."
 * intent = #order
 
 * subject
-  * reference = "ImagingPatientProfile/example-imaging-patient"
+  * reference = "Patient/example-imaging-patient"
 * encounter
-  * reference = "ImagingVisitProfile/example-imaging-encounter"
+  * reference = "Encounter/example-imaging-encounter"
 * basedOn
-  * reference = "ImagingServiceRequestProfile       /example-imaging-service-request"
+  * reference = "ServiceRequest/example-imaging-service-request"

@@ -52,8 +52,8 @@ Description: "An example of ImagingStudy content in a FHIR MWL response."
   * value = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343004"
 
 * subject
-  * reference = "ImagingPatientProfile/example-imaging-patient"
+  * reference = "Patient/example-imaging-patient"
 * encounter
-  * reference = "ImagingVisitProfile/example-imaging-encounter"
+  * reference = "Encounter/example-imaging-encounter"
 * basedOn
-  * reference = "ImagingServiceRequestProfile/example-imaging-service-request"
+  * reference = "ServiceRequest/example-imaging-service-request"
