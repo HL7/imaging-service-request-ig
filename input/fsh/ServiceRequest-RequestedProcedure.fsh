@@ -50,9 +50,6 @@ Description: "An example of a DICOM ImagingRequestedProcedure in FHIR."
 * status = #active
 * intent = #order
 
-* subject
-  * reference = "Patient/example-imaging-patient"
-* encounter
-  * reference = "Encounter/example-imaging-encounter"
-* basedOn
-  * reference = "ServiceRequest/example-imaging-service-request"
+* subject = Reference(ImagingPatient-Example)
+* encounter = Reference(ImagingVisit-Example)
+* basedOn = Reference(ImagingServiceRequest-Example)

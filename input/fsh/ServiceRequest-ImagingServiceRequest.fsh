@@ -85,7 +85,5 @@ Description: "An example of a DICOM ImagingServiceRequest in FHIR."
 * status = #active
 * intent = #order
 
-* subject
-  * reference = "Patient/example-imaging-patient"
-* encounter
-  * reference = "Encounter/example-imaging-encounter"
+* subject = Reference(ImagingPatient-Example)
+* encounter = Reference(ImagingVisit-Example)

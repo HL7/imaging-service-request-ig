@@ -12,3 +12,26 @@ Description:    "DICOM MWL Scheduled Station Mapping to Device"
 
 * ^abstract = true
 * insert DICOMMWLStructureDefinitionContent
+
+* name ^slicing.discriminator.type = #value
+* name ^slicing.discriminator.path = "type"
+* name ^slicing.rules = #open
+* name ^slicing.ordered = false
+* name ^slicing.description = "AE Title of the Scheduled Station"
+
+* name contains aeTitle 1..1
+* name[aeTitle] ^short = "AE Title"
+* name[aeTitle] ^definition = "AE Title of the Scheduled Station"
+* name[aeTitle].value 1..1
+* name[aeTitle].type = #registered-name
+
+Instance: ScheduledStation-Example
+InstanceOf: ScheduledStationProfile
+Usage: #example
+Description: "An example of the Device resource included in a MWL response."
+
+* id = "example-scheduled-station"
+
+* name[aeTitle]
+  * value = "CT-RAD-01"
+  * type = #registered-name

@@ -51,9 +51,6 @@ Description: "An example of ImagingStudy content in a FHIR MWL response."
   * system = "urn:dicom:uid"
   * value = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343004"
 
-* subject
-  * reference = "Patient/example-imaging-patient"
-* encounter
-  * reference = "Encounter/example-imaging-encounter"
-* basedOn
-  * reference = "ServiceRequest/example-imaging-service-request"
+* subject = Reference(ImagingPatient-Example)
+* encounter = Reference(ImagingVisit-Example)
+* basedOn = Reference(ImagingServiceRequest-Example)
