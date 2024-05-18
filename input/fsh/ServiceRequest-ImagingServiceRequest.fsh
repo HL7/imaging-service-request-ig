@@ -36,6 +36,7 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 
 // TBD -- constrain values of status?
 // TBD -- constrain values of intent?
+* intent = #order
 
 * category = http://snomed.info/sct#363679005 "Imaging"
 
