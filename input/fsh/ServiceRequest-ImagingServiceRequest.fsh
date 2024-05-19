@@ -38,6 +38,8 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 // TBD -- constrain values of intent?
 * intent = #order
 
+// TODO -- disallow timing
+
 * category = http://snomed.info/sct#363679005 "Imaging"
 
 // * code TODO -- set LOINC codeset as example codeset instead of SNOMED CT (see https://build.fhir.org/imagingstudy-definitions.html#ImagingStudy.procedure)
