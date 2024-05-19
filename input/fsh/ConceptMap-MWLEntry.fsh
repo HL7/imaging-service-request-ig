@@ -208,7 +208,7 @@ Usage:          #definition
     * target[+]
       * code = #ReferringPhysicianName
       * display = "Referring Physician's Name (0008,0090)"
-      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
         * valueCode = #Practictioner
@@ -218,7 +218,7 @@ Usage:          #definition
     * target[+]
       * code = #ReferringPhysicianIdentificationSequence
       * display = "Referring Physician Identification Sequence (0008,0096)"
-      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
         * valueCode = #Practictioner
@@ -228,14 +228,14 @@ Usage:          #definition
     * target[+]
       * code = #RequestingService
       * display = "Requesting Service (0032,1033)"
-      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
         * valueCode = #Organization   
     * target[+]
       * code = #RequestingServiceCodeSequence
       * display = "Requesting Service Code Sequence (0032,1034)"
-      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
         * valueCode = #Organization
