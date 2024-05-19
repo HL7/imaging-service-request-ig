@@ -4,9 +4,10 @@ and describes the use cases supported by this implementation guide.
 1. [Problem](problem) - Description of the Problem
 2. [Scope](#scope) - Scope of the IG
 3. [Intended Readers](#readers) - Intended readers of the IG
-4. [Use cases](#use-cases) - Key use cases covered by the IG
-5. [Glossary](#glossary) - Glossary of terms used in this IG
-6. [References](#references) - Useful references
+4. [Relationship to IHE Scheduled Workflow](#ihe-scheduled-workflow) - Relationship to IHE Radiology Scheduled Workflow Profile
+5. [Use cases](#use-cases) - Key use cases covered by the IG
+6. [Glossary](#glossary) - Glossary of terms used in this IG
+7. [References](#references) - Useful references
 
 ### Problem<a name="problem"></a>
 The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices with information from the ordering system (patient, visit, procedure, etc.).
@@ -50,6 +51,7 @@ The following SWF transactions are relevant to this profile.
 - Messages:
   - New Order From Order Placer
   - Order Cancelled by Order Placer
+
 ##### Filler Order Management \[RAD-3\]
 - DSS / Order Filler communication to Order Placer
 - Updates Order Placer on changes made to orders by the DSS
@@ -57,6 +59,7 @@ The following SWF transactions are relevant to this profile.
   - New Order From Order Filler or Change Order Form
   - Order Status Update
   - Order Cancelled By the Order Filler
+
 ##### Procedure Scheduled \[RAD-4\] / Procedure Updated \[RAD-13\]
 - DSS / Order Filler communication to Image Archive / Image Manager
 - Used to match / reconcile orders with images
