@@ -33,6 +33,52 @@ This Implementation Guide is intended for
 
 *To be created*
 
+### Relationship to IHE Scheduled Workflow<a name="ihe-scheduled-workflow"></a>
+#### Actors
+The following SWF actors are relevant to this profile:
+- Order Placer
+- Department System Scheduler / Order Filler (DSS)
+- Image Manager / Image Archive
+- Acquisition Modality
+
+#### Transactions
+The following SWF transactions are relevant to this profile.
+
+##### Placer Order Management \[RAD-2\]
+- Order Placer communication to DSS / Order Filler
+- Order message content is relatively sparse
+- Messages:
+  - New Order From Order Placer
+  - Order Cancelled by Order Placer
+##### Filler Order Management \[RAD-3\]
+- DSS / Order Filler communication to Order Placer
+- Updates Order Placer on changes made to orders by the DSS
+- Messages:
+  - New Order From Order Filler or Change Order Form
+  - Order Status Update
+  - Order Cancelled By the Order Filler
+##### Procedure Scheduled \[RAD-4\] / Procedure Updated \[RAD-13\]
+- DSS / Order Filler communication to Image Archive / Image Manager
+- Used to match / reconcile orders with images
+
+##### Query Modality Worklist \[RAD-5\]
+- Acquisition Modality queries DSS / Order Filler for worklist entries
+- Used to populate the modality worklist
+
+### Mapping to FHIR Operations
+This implementation guide includes FHIR operations to cover:
+- Creation of orders from Order Placer to DSS / Order Filler (\[RAD-2\])
+- Cancellation of orders by the Order Placer (\[RAD-2\])
+- Provision of order details and status updates from DSS / Order Filler to Order Placer (\[RAD-3\]) and the Image Archive / Image Manager (\[RAD-4\] / \[RAD-13\])
+
+The following SWF transactions are not modelled in FHIR:
+- Schedule Procedure and / or Assign Protocol
+  - It is expected that the MWL service can populate this information based on the order creation request
+  - The mechanism by which it does so is out of scope
+- Modality Worklist Query
+  - Modality Worklist Query remains a DICOM operation
+  - The operation by which the Order Filler and Image Manage / Image Archive retrieve order details may be a suitable basis for this query
+
 
 ### Use cases<a name="use-cases"></a>
 Two use cases were identified.
@@ -67,7 +113,8 @@ The following terms and acronyms are used within the Radiation Dose Summary IG:
 ### References<a name="references"></a>
 
 1. DICOM,[DICOM PS3.4 Section K.6: Modality Worklist SOP Class](https://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_K.6.html)
-2. IHE Radiology (RAD), [HL7 Order Mapping to DICOM MWL)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol2x.pdf)
-3. HL7 IG [HL7 Version 2 to FHIR](https://build.fhir.org/ig/HL7/v2-to-fhir/)
-4. HL7 IG [Clinical Order Worfklows Implementation Guide](https://build.fhir.org/ig/HL7/fhir-cow-ig/)
-5. HL7 IG [Order Catalog Implementation Guide](https://build.fhir.org/ig/HL7/fhir-order-catalog/)
+2. IHE Radiology (RAD), [HL7 Order Mapping to DICOM MWL)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol2x.pdf), Appendix B
+3. IHE Radiology (RAD), [Scheduled Workflow (SWF)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf), Section 3
+4. HL7 IG [HL7 Version 2 to FHIR](https://build.fhir.org/ig/HL7/v2-to-fhir/)
+5. HL7 IG [Clinical Order Worfklows Implementation Guide](https://build.fhir.org/ig/HL7/fhir-cow-ig/)
+6. HL7 IG [Order Catalog Implementation Guide](https://build.fhir.org/ig/HL7/fhir-order-catalog/)

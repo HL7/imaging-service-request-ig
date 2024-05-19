@@ -8,6 +8,7 @@ This IG is organized into three main sections:
     * [Problem](background.html#problem) - Description of the problem
     * [Scope](background.html#scope) - Scope of the IG
     * [Intended Readers](background.html#readers) - Intended readers of the IG
+    * [Relationship to IHE Scheduled Workflow](background.html#ihe-scheduled-workflow) - Relationship to IHE Radiology Scheduled Workflow Profile
     * [Use cases](background.html#use-cases) - Key use cases covered by the IG
     * [Glossary](background.html#glossary) - Glossary
     * [References](background.html#references) - References
