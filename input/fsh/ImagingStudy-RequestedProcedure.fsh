@@ -6,7 +6,7 @@ Alias: HL7IdType = http://terminology.hl7.org/CodeSystem/v2-0203
 
 Profile:        ImagingStudyRequestedProcedureProfile
 Parent:         ImagingStudy
-Id:             imaging-study-requested-procedure
+Id:             requested-procedure-imaging-study
 Title:          "ImagingStudy - DICOM MWL Requested Procedure Mapping"
 Description:    "DICOM MWL Requested Procedure Mapping to ImagingStudy"
 
@@ -45,7 +45,7 @@ InstanceOf: ImagingStudyRequestedProcedureProfile
 Usage: #example
 Description: "An example of ImagingStudy content in a FHIR MWL response."
 
-* id = "example-imaging-study-requested-procedure"
+* id = "example-requested-procedure-imaging-study"
 
 * identifier[studyInstanceUid]
   * system = "urn:dicom:uid"

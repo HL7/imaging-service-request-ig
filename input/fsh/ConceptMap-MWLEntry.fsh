@@ -13,16 +13,20 @@ Usage:          #definition
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * extension[0].valueCode = #ii
 
-* additionalAttribute
+* additionalAttribute[+]
   * code = #ResourceType
   * description = "FHIR Resource Reference Type"
   * uri = "http://hl7.org/fhir/ValueSet/resource-types"
   * type = #code
-* additionalAttribute
+* additionalAttribute[+]
   * code = #IdentifierType
   * description = "FHIR Identifier Type"
   * uri = "http://terminology.hl7.org/CodeSystem/v2-0203"
   * type = #Coding  
+* additionalAttribute[+]
+  * code = #SystemType
+  * description = "FHIR System Type"
+  * type = #string  
 
 * group[+]
   * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
@@ -95,7 +99,7 @@ Usage:          #definition
     * code = #imaging-visit.identifier
     * target[+]
       * code = #AdmissionID
-      * display = "Admission ID (00380,0010)"
+      * display = "Admission ID (0380,0010)"
       * relationship = #source-is-broader-than-target
       * comment = "The value of the encounter identifer"
     * target[+]
@@ -109,10 +113,20 @@ Usage:          #definition
       * code = #CurrentPatientLocation
       * display = "Current Patient Location (0038,0300)"
       * relationship = #equivalent
+  * element[+]
+    * code = #imaging-visit.reason
+    * target[+]
+      * code = #ReasonForVisit
+      * display = "Reason for Visit (0032,1066)"
+      * relationship = #equivalent
+    * target[+]
+      * code = #ReasonForVisitCodeSequence
+      * display = "Reason for Visit Code Sequence (0032,1067)"
+      * relationship = #equivalent
 
 * group[+]
   * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
-  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.3.html"
+  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.4.12.html"
   * element[+]
     * code = #imaging-service-request
     * target[+]
@@ -168,4 +182,142 @@ Usage:          #definition
       * comment = "The system of the identifier of type 'FILL'"
       * dependsOn
         * attribute = #IdentifierType
-        * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#FILL        
+        * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#FILL    
+  * element[+]
+    * code = #imaging-service-request.requester
+    * target[+]
+      * code = #RequestingPhysician
+      * display = "Requesting Physician (0032,1032)"
+      * relationship = #source-is-broader-than-target
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Practictioner
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #PractictionerRole
+    * target[+]
+      * code = #RequestingPhysicianIdentificationSequence
+      * display = "Requesting Physician Identification Sequence (0032,1031)"
+      * relationship = #source-is-broader-than-target
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Practictioner
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #PractictionerRole
+    * target[+]
+      * code = #ReferringPhysicianName
+      * display = "Referring Physician's Name (0008,0090)"
+      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Practictioner
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #PractictionerRole   
+    * target[+]
+      * code = #ReferringPhysicianIdentificationSequence
+      * display = "Referring Physician Identification Sequence (0008,0096)"
+      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Practictioner
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #PractictionerRole
+    * target[+]
+      * code = #RequestingService
+      * display = "Requesting Service (0032,1033)"
+      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Organization   
+    * target[+]
+      * code = #RequestingServiceCodeSequence
+      * display = "Requesting Service Code Sequence (0032,1034)"
+      * relationship = #source-is-broader-than-IssueTimeOfImagingServiceRequest
+      * dependsOn[+]
+        * attribute = #ResourceType
+        * valueCode = #Organization
+  * element[+]
+    * code = #imaging-service-request.authoredOn
+    * target[+]
+      * code = #IssueDateOfImagingServiceRequest
+      * display = "Issue Date of Imaging Service Request (0040,2004)"
+      * relationship = #source-is-broader-than-target   
+      * comment = "The date component of the dateTime"   
+    * target[+]
+      * code = #IssueTimeOfImagingServiceRequest
+      * display = "Issue Time of Imaging Service Request (0040,2005)"
+      * relationship = #source-is-broader-than-target   
+      * comment = "The time component of the dateTime"                       
+
+* group[+]
+  * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
+  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.4.11.html"
+  * element[+]
+    * code = #imaging-requested-procedure
+    * target[+]
+      * code = #RequestedProcedure
+      * display = "Requested Procedure"
+      * relationship = #source-is-narrower-than-target
+  * element[+]
+    * code = #imaging-requested-procedure.identifier
+    * target[+]
+      * code = #RequestedProcedureID
+      * display = "Requested Procedure ID (0040,1001)"
+      * relationship = #equivalent
+  * element[+]
+    * code = #imaging-requested-procedure.code
+    * target[+]
+      * code = #RequestedProcedureDescription
+      * display = "Requested Procedure Description (0032,1060)"
+      * relationship = #source-is-broader-than-target   
+    * target[+]
+      * code = #RequestedProcedureCodeSequence
+      * display = "Requested Procedure Code Sequence (0032,1064)"
+      * relationship = #equivalent
+  * element[+]
+    * code = #imaging-requested-procedure.priority
+    * target[+]
+      * code = #RequestedProcedurePriority
+      * display = "Requested Procedure Priority (0040,1003)"
+      * relationship = #equivalent
+  * element[+]
+    * code = #imaging-requested-procedure.reason
+    * target[+]
+      * code = #ReasonForTheRequestedProcedure
+      * display = "Reason for the Requested Procedure (0040,1002)"
+      * relationship = #equivalent
+    * target[+]
+      * code = #ReasonForRequestedProcedureCodeSequence
+      * display = "Reason for Requested Procedure Code Sequence (0040,100A)"
+      * relationship = #equivalent
+
+* group[+]
+  * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
+  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.4.11.html"
+  * element[+]
+    * code = #requested-procedure-imaging-study
+    * target[+]
+      * code = #RequestedProcedure
+      * display = "Requested Procedure"
+      * relationship = #source-is-narrower-than-target 
+    * code = #requested-procedure-imaging-study.identifier
+    * target[+]
+      * code = #StudyInstanceUID
+      * display = "Study Instance UID (0020,000D)"
+      * relationship = #equivalent
+      * dependsOn
+        * attribute = #SystemType
+        * valueString = "urn:dicom:uid"  
+
+* group[+]
+  * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
+  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.4.10.html"
+  * element[+]
+    * code = #imaging-scheduled-procedure-step
+    * target[+]
+      * code = #ScheduledProcedureStep
+      * display = "Scheduled Procedure Step"
+      * relationship = #equivalent        
