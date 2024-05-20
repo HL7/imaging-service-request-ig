@@ -1,0 +1,18 @@
+Actor User
+participant RIS
+participant MWL
+participant PACS
+
+User -> RIS: order imaging exam
+RIS -> MWL: <url>/$createOrder ( TransactionBundle )
+
+note over MWL: ServiceRequest, Task etc are available
+
+RIS <-- MWL: TransactionResponse
+
+note over RIS: inspect resources
+RIS -> MWL: GET...
+
+note over RIS: update order
+RIS -> MWL: <url>/ServiceRequest/<id>/$update( TransactionBundle )
+RIS <-- MWL: TransactionResponse

@@ -1,0 +1,11 @@
+component RIS
+component MWL
+component PACS
+interface "FHIR" as FHIR1
+interface "FHIR" as FHIR2
+
+MWL -left- FHIR1
+MWL -right- FHIR2
+
+RIS -right-> FHIR1
+PACS -left-> FHIR2
