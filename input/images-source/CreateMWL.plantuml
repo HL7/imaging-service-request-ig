@@ -1,0 +1,52 @@
+
+class RequestedProcedure{
+    RequestedProcedureId : identifier
+    RequestedProcedureCode
+    ReasonForRequestedProcedureCode
+    StudyUID: identifier
+    Priority
+    ...
+}
+
+class ScheduledProcedureStep {
+    stationAeTitle
+    modality
+    scheduledStartDateAndTime
+    scheduledEndDateAndTime
+    scheduledProtocolSequence
+    scheduledProtocolDescription
+    scheduledProcedureStepIdentifier:identifier
+    status
+    ...
+}
+
+
+class Patient{
+    id: identifier
+    name
+    birthday
+    gender
+    ...
+}
+
+class Visit{
+    visitId : identifier
+    location
+    ...
+}
+
+class ImagingServiceRequest{
+    AccessionNumber: identifier
+    RequestingPhysician
+    ReferringPhysician
+    RequestDateTime
+    FillerOrderNumber: identifier
+    PlacerOrderNumber: identifier
+    RequestingService
+    ...
+}
+
+ImagingServiceRequest  "*" -up- "1" RequestedProcedure
+RequestedProcedure "*" -up- "1"  ScheduledProcedureStep
+ImagingServiceRequest -- "1" Patient
+RequestedProcedure -- "1" Visit
