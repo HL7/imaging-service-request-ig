@@ -10,7 +10,7 @@ Id:             requested-procedure-imaging-study
 Title:          "ImagingStudy - DICOM MWL Requested Procedure Mapping"
 Description:    "DICOM MWL Requested Procedure Mapping to ImagingStudy"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 * status = #registered

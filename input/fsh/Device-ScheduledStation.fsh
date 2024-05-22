@@ -10,7 +10,7 @@ Id:             scheduled-station
 Title:          "Device - DICOM Scheduled Station Mapping"
 Description:    "DICOM MWL Scheduled Station Mapping to Device"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 * name ^slicing.discriminator.type = #value

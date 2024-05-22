@@ -10,7 +10,7 @@ Id:             imaging-patient
 Title:          "Patient - DICOM MWL Patient Mapping"
 Description:    "DICOM MWL Mapping to Patient"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 Instance: ImagingPatient-Example

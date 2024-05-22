@@ -61,12 +61,10 @@ pages:
   background.md:
     title: Background
     generation: markdown
-#   architecture.md:
-#     title: Architecture
-#     generation: markdown
-#   mapping.md:
-#     title: Mapping
-#     generation: markdown
+  architecture.md:
+    title: Architecture
+    generation: markdown
+
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
@@ -75,6 +73,5 @@ menu:
   IG Home: index.html
   Contents: toc.html
   Background: background.html
-#  Architecture: architecture.html
-#  Mapping: mapping.html
+  Architecture: architecture.html
   Artifact Index: artifacts.html
