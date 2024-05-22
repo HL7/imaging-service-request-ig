@@ -10,7 +10,7 @@ Id:             imaging-service-request
 Title:          "ServiceRequest - DICOM MWL Imaging Service Request Mapping"
 Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 * identifier ^slicing.discriminator.type = #value

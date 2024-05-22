@@ -10,7 +10,7 @@ Id:             imaging-requested-procedure
 Title:          "ServiceRequest - DICOM MWL Requested Procedure Mapping"
 Description:    "DICOM MWL Requested Procedure Mapping to ServiceRequest"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 * intent = #order

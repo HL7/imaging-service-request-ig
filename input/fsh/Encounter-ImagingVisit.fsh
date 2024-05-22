@@ -10,7 +10,7 @@ Id:             imaging-visit
 Title:          "Encounter - DICOM MWL Visit Mapping"
 Description:    "DICOM MWL Visit Mapping to Encounter"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 // Associated Patient

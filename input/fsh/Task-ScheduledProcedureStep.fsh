@@ -10,7 +10,7 @@ Id:             imaging-scheduled-procedure-step
 Title:          "Task - DICOM MWL Scheduled Procedure Step Mapping"
 Description:    "DICOM MWL Scheduled Procedure Step Mapping to Task"
 
-* ^abstract = true
+* ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
 
 // Associated RequestedProcedure
