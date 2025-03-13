@@ -9,7 +9,7 @@ Description: "An example of a single frame image selection."
 * code
   * coding
     * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "113000"
+    * code = #113000
 * subject
   * type = "Patient"
   * identifier
