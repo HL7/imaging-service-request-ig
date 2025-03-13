@@ -3,7 +3,7 @@ InstanceOf: ImagingSelection
 Usage: #example
 Description: "An example of a 3D image region selection."
 
-* id = "example-2d-image-region-selection"
+* id = "example-3d-image-region-selection"
 
 * status = #available
 * code
