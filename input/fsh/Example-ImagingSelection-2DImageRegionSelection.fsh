@@ -28,7 +28,7 @@ Description: "An example of a 2D image region selection."
   * sopClass = "urn:oid:1.2.840.10008.5.1.4.1.1.2"
   * imageRegion2D
     * regionType = #polyline
-    * coordinates
+    * coordinate
       * 0.25
       * 0.25
       * 0.75
