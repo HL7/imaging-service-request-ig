@@ -32,7 +32,7 @@ contact:
 description: Profile FHIR ServiceRequest and related resources to fulfill the image ordering use cases.
 jurisdiction: "http://unstats.un.org/unsd/methods/m49/m49.htm#001"
 license: CC0-1.0
-fhirVersion: 5.0.0
+fhirVersion: 6.0.0-ballot2
 copyrightYear: 2021+
 releaseLabel: ci-build
 dependencies:
