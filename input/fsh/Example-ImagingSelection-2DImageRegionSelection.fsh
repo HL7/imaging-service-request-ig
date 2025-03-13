@@ -26,7 +26,7 @@ Description: "An example of a 2D image region selection."
 * instance
   * uid = "1.2.840.113747.20080222.35738167368358372924412538783781.1.0"
   * sopClass = "urn:oid:1.2.840.10008.5.1.4.1.1.2"
-  * imageRegion2d
+  * imageRegion2D
     * regionType = #polyline
     * coordinates
       * 0.25
