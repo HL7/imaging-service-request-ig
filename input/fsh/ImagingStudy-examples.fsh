@@ -10,14 +10,17 @@ Description: "An example of ImagingStudy with multiple modalities."
   * value = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005"
 * status = #available
 * modality[+]
-  * system = "http://dicom.nema.org/resources/ontology/DCM"
-  * code = "CT"
+  * coding[+]
+    * system = "http://dicom.nema.org/resources/ontology/DCM"
+    * code = "CT"
 * modality[+]
-  * system = "http://dicom.nema.org/resources/ontology/DCM"
-  * code = "PET"
+  * coding[+]
+    * system = "http://dicom.nema.org/resources/ontology/DCM"
+    * code = "PET"
 * modality[+]
-  * system = "http://dicom.nema.org/resources/ontology/DCM"
-  * code = "SR"
+  * coding[+]
+    * system = "http://dicom.nema.org/resources/ontology/DCM"
+    * code = "SR"
 * subject
   * reference = "Patient/dicom"
 * started = "2017-01-01T11:01:20+03:00"
@@ -37,20 +40,23 @@ Description: "An example of ImagingStudy with multiple modalities."
   * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.1"
   * number = 1
   * modality
-    * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "CT"
+    * coding[+]
+      * system = "http://dicom.nema.org/resources/ontology/DCM"
+      * code = "CT"
   * numberOfInstances = 133
 * series[+]
   * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.2"
   * number = 2
   * modality
-    * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "PET"
+    * coding[+]
+      * system = "http://dicom.nema.org/resources/ontology/DCM"
+      * code = "PET"
   * numberOfInstances = 100
 * series[+]
   * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.3"
   * number = 101
   * modality
-    * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "SR"
+    * coding[+]
+      * system = "http://dicom.nema.org/resources/ontology/DCM"
+      * code = "SR"
   * numberOfInstances = 1
