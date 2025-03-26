@@ -31,13 +31,13 @@ Description: "An example of ImagingStudy with multiple modalities."
       * coding
         * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
         * code = #ACSN
-      * value = "W12342398"
-      * assigner
-        * reference = "Organization/dicom-organization"
+    * value = "W12342398"
+    * assigner
+      * reference = "Organization/dicom-organization"
 * numberOfSeries = 3
 * numberOfInstances = 234
 * series[+]
-  * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.1"
+  * uid = "2.16.124.113543.1154777499.30246.19789.350343005.1"
   * number = 1
   * modality
     * coding[+]
@@ -45,7 +45,7 @@ Description: "An example of ImagingStudy with multiple modalities."
       * code = #CT
   * numberOfInstances = 133
 * series[+]
-  * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.2"
+  * uid = "2.16.124.113543.1154777499.30246.19789.350343005.2"
   * number = 2
   * modality
     * coding[+]
@@ -53,7 +53,7 @@ Description: "An example of ImagingStudy with multiple modalities."
       * code = #PET
   * numberOfInstances = 100
 * series[+]
-  * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.3"
+  * uid = "2.16.124.113543.1154777499.30246.19789.350343005.3"
   * number = 101
   * modality
     * coding[+]
