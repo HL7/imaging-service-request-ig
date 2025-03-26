@@ -1,4 +1,4 @@
-Instance: ImagingStudyRequestedProcedure-Example
+Instance: Instance: ImagingStudy-Example-Multiple-Modality
 InstanceOf: ImagingStudy
 Usage: #example
 Description: "An example of ImagingStudy with multiple modalities."
