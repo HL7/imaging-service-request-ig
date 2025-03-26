@@ -12,15 +12,15 @@ Description: "An example of ImagingStudy with multiple modalities."
 * modality[+]
   * coding[+]
     * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "CT"
+    * code = #CT
 * modality[+]
   * coding[+]
     * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "PET"
+    * code = #PET
 * modality[+]
   * coding[+]
     * system = "http://dicom.nema.org/resources/ontology/DCM"
-    * code = "SR"
+    * code = #SR
 * subject
   * reference = "Patient/dicom"
 * started = "2017-01-01T11:01:20+03:00"
@@ -30,7 +30,7 @@ Description: "An example of ImagingStudy with multiple modalities."
     * type
       * coding
         * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-        * code = "ACSN"
+        * code = #ACSN
       * value = "W12342398"
       * assigner
         * reference = "Organization/dicom-organization"
@@ -42,7 +42,7 @@ Description: "An example of ImagingStudy with multiple modalities."
   * modality
     * coding[+]
       * system = "http://dicom.nema.org/resources/ontology/DCM"
-      * code = "CT"
+      * code = #CT
   * numberOfInstances = 133
 * series[+]
   * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.2"
@@ -50,7 +50,7 @@ Description: "An example of ImagingStudy with multiple modalities."
   * modality
     * coding[+]
       * system = "http://dicom.nema.org/resources/ontology/DCM"
-      * code = "PET"
+      * code = #PET
   * numberOfInstances = 100
 * series[+]
   * uid = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005.3"
@@ -58,5 +58,5 @@ Description: "An example of ImagingStudy with multiple modalities."
   * modality
     * coding[+]
       * system = "http://dicom.nema.org/resources/ontology/DCM"
-      * code = "SR"
+      * code = #SR
   * numberOfInstances = 1
