@@ -5,7 +5,7 @@ Description: "An example of ImagingStudy with multiple modalities."
 
 * id = "imaging-study-example-multiple-modality"
 
-* identifier[studyInstanceUid]
+* identifier
   * system = "urn:dicom:uid"
   * value = "urn:oid:2.16.124.113543.1154777499.30246.19789.350343005"
 * status = #available
