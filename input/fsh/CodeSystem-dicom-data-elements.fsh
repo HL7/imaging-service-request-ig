@@ -2,9 +2,6 @@ CodeSystem: DICOMDataElements
 Id: dicom-data-elements
 Title: "DICOM® Data Elements"
 Description: "DICOM® Data elements extracted from DICOM PS3.6 Table 6-1."
-* ^caseSensitive = true
-* ^content = #complete
-* ^experimental = false
 
 * #LengthToEnd "Length to End" "Length to End (0008,0001)"
 * #SpecificCharacterSet "Specific Character Set" "Specific Character Set (0008,0005)"
