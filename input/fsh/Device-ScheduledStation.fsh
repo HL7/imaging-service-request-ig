@@ -1,4 +1,4 @@
-Alias: DCM = http://dicom.nema.org/resources/ontology/DCM
+    Alias: DCM = http://dicom.nema.org/resources/ontology/DCM
 Alias: SCT = http://snomed.info/sct
 Alias: LOINC =  http://loinc.org
 Alias: DCMIdType = http://hl7.org/fhir/uv/dicom-sr/CodeSystem/dicom-identifier-type

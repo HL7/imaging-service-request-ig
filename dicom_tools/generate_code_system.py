@@ -5,7 +5,10 @@ import os
 import sys
 from pathlib import Path
 
-from dicom_spec_parser import get_data_elements, get_uid_values, get_transfer_syntaxes, get_sop_classes
+from typing import Dict
+
+from dicom_spec_parser import get_data_elements, get_uid_values, get_transfer_syntaxes, \
+    get_sop_classes, DataElement
 
 UID_CODE_URL = "http://hl7.org/fhir/uv/imaging-service-request-ig/CodeSystem/dicom-uids"
 RESOURCE_VALUES = {
@@ -65,15 +68,20 @@ def main(args=None):
             fsh_file.write('* ^content = #complete\n')
         fsh_file.write('* ^experimental = false\n\n')
 
-        value_list = resource_values["method"](include_retired=False)
-        for value in value_list:
-            if args.dicom_resource == 'data_elements':
-                fsh_file.write(f'* #{value[0]} "{value[1]}" "{value[2]} {value[1]}"\n')
-            elif resource_values["type"] == 'CodeSystem':
-                fsh_file.write(f'* #{value[0]} "{value[2]}" "{value[1]}"\n')
-            else:
-                fsh_file.write(f'* {UID_CODE_URL}#{value[0]} "{value[2]}"\n')
-
+        resource_args = {
+            'include_retired': False
+        }
+        if args.dicom_resource == 'data_elements':
+            value_list: Dict[str, DataElement] = resource_values["method"]()
+            for tag, data_element in value_list.items():
+                fsh_file.write(f'* #{data_element.keyword} "{data_element.name}" "{data_element.name} {data_element.tag}"\n')
+        else:
+            value_list = resource_values["method"](**resource_args)
+            for value in value_list:
+                if resource_values["type"] == 'CodeSystem':
+                    fsh_file.write(f'* #{value[0]} "{value[2]}" "{value[1]}"\n')
+                else:
+                    fsh_file.write(f'* {UID_CODE_URL}#{value[0]} "{value[2]}"\n')
 
 
 if __name__ == '__main__':
