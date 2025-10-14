@@ -1,7 +1,7 @@
-ValueSet: ImagingSelectionReferenceType
-Id: imagingselection-referencetype
-Title: "Imaging Selection Reference Type"
-Description: "The type of image reference specified by an imaging selection."
+ValueSet: ImageReferenceType
+Id: image-reference-type
+Title: "Image Reference Type"
+Description: "The type of image reference."
 * ^experimental = false
 
 * http://dicom.nema.org/resources/ontology/DCM#111030
