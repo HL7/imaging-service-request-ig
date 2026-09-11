@@ -1,5 +1,5 @@
+### Structure of a Modality Worklist Query Response<a name="mwl-structure"></a>
 
-### Structure of a Modality Worklist Query Response
 Each Modality Worklist Entry / MWL Query Response contains the following segments:
 
 | Modality Worklist Entry |

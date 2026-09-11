@@ -1,5 +1,6 @@
 Instance: RisCapabilityStatement
 InstanceOf: CapabilityStatement
+Usage: #definition
 Description: "The CapabilityStaement of the RIS interface to the MWL"
 * url = "http://RIS"
 * version = "0.0.1"

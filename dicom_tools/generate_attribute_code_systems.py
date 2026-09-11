@@ -28,6 +28,9 @@ def main(args=None):
             attribute_keyword = data_elements[attribute].keyword
             fsh_filename = f'CodeSystem-dicom-{attribute_keyword}.fsh'
             print(f'Generating FHIR Shorthand for {attribute_name} in {fsh_path}/{fsh_filename}')
+            if attribute_name == "Study Update DateTime":
+                print(f'defined_terms:\n{defined_terms}')
+                print('Moo')
             with open(os.path.join(fsh_path, fsh_filename), 'w') as fsh_file:
                 fsh_file.write(f'CodeSystem: {attribute_keyword}\n')
                 fsh_file.write(f'Id: {attribute}\n')
@@ -40,8 +43,11 @@ def main(args=None):
                 fsh_file.write('* ^caseSensitive = true\n')
                 fsh_file.write('* ^content = #complete\n')
                 fsh_file.write('* ^experimental = false\n\n')
-
+                if attribute_keyword == 'PlanarConfiguration':
+                    print(f'PlanarConfiguration string:\n{defined_terms}')
                 for term, value in defined_terms.items():
+                    if ' ' in term:
+                        term = f'"{term}"'
                     fsh_file.write(f'* #{term} "{value}" "{value}"\n')
 
 

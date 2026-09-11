@@ -10,6 +10,7 @@ and describes the use cases supported by this implementation guide.
 7. [References](#references) - Useful references
 
 ### Problem<a name="problem"></a>
+
 The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices with information from the ordering system (patient, visit, procedure, etc.).
 
 The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from equivalent FHIR resources is not.
@@ -17,6 +18,7 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
 ### Scope<a name="scope"></a>
 
 #### In Scope
+
 * Resource profiles
   * Imaging Service Request as ServiceRequest
   * Requested Procedure as either a ServiceRequest
@@ -26,69 +28,83 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
   * Imaging Service Request to DICOM MWL C-FIND RSP
 
 #### Out of Scope
+
 * Mapping DICOM MPPS to FHIR
 * Modelling entire image ordering workflow
 
 ### Intended Readers<a name="readers"></a>
+
 This Implementation Guide is intended for
 
 *To be created*
 
 ### Relationship to IHE Scheduled Workflow<a name="ihe-scheduled-workflow"></a>
+
 #### Actors
+
 The following SWF actors are relevant to this profile:
-- Order Placer
-- Department System Scheduler / Order Filler (DSS)
-- Image Manager / Image Archive
-- Acquisition Modality
+
+* Order Placer
+* Department System Scheduler / Order Filler (DSS)
+* Image Manager / Image Archive
+* Acquisition Modality
 
 #### Transactions
+
 The following SWF transactions are relevant to this profile.
 
 ##### Placer Order Management \[RAD-2\]
-- Order Placer communication to DSS / Order Filler
-- Order message content is relatively sparse
-- Messages:
-  - New Order From Order Placer
-  - Order Cancelled by Order Placer
+
+* Order Placer communication to DSS / Order Filler
+* Order message content is relatively sparse
+* Messages:
+  * New Order From Order Placer
+  * Order Cancelled by Order Placer
 
 ##### Filler Order Management \[RAD-3\]
-- DSS / Order Filler communication to Order Placer
-- Updates Order Placer on changes made to orders by the DSS
-- Messages:
-  - New Order From Order Filler or Change Order Form
-  - Order Status Update
-  - Order Cancelled By the Order Filler
+
+* DSS / Order Filler communication to Order Placer
+* Updates Order Placer on changes made to orders by the DSS
+* Messages:
+  * New Order From Order Filler or Change Order Form
+  * Order Status Update
+  * Order Cancelled By the Order Filler
 
 ##### Procedure Scheduled \[RAD-4\] / Procedure Updated \[RAD-13\]
-- DSS / Order Filler communication to Image Archive / Image Manager
-- Used to match / reconcile orders with images
+
+* DSS / Order Filler communication to Image Archive / Image Manager
+* Used to match / reconcile orders with images
 
 ##### Query Modality Worklist \[RAD-5\]
-- Acquisition Modality queries DSS / Order Filler for worklist entries
-- Used to populate the modality worklist
+
+* Acquisition Modality queries DSS / Order Filler for worklist entries
+* Used to populate the modality worklist
 
 ### Mapping to FHIR Operations
+
 This implementation guide includes FHIR operations to cover:
-- Creation of orders from Order Placer to DSS / Order Filler (\[RAD-2\])
-- Cancellation of orders by the Order Placer (\[RAD-2\])
-- Provision of order details and status updates from DSS / Order Filler to Order Placer (\[RAD-3\]) and the Image Archive / Image Manager (\[RAD-4\] / \[RAD-13\])
+* Creation of orders from Order Placer to DSS / Order Filler (\[RAD-2\])
+* Cancellation of orders by the Order Placer (\[RAD-2\])
+* Provision of order details and status updates from DSS / Order Filler to Order Placer (\[RAD-3\]) and the Image Archive / Image Manager (\[RAD-4\] / \[RAD-13\])
 
 The following SWF transactions are not modelled in FHIR:
-- Schedule Procedure and / or Assign Protocol
-  - It is expected that the MWL service can populate this information based on the order creation request
-  - The mechanism by which it does so is out of scope
-- Modality Worklist Query
-  - Modality Worklist Query remains a DICOM operation
-  - The operation by which the Order Filler and Image Manage / Image Archive retrieve order details may be a suitable basis for this query
 
+* Schedule Procedure and / or Assign Protocol
+  * It is expected that the MWL service can populate this information based on the order creation request
+  * The mechanism by which it does so is out of scope
+* Modality Worklist Query
+  * Modality Worklist Query remains a DICOM operation
+  * The operation by which the Order Filler and Image Manage / Image Archive retrieve order details may be a suitable basis for this query
 
 ### Use cases<a name="use-cases"></a>
+
 Two use cases were identified.
 
-#### Use case 1: Populate DICOM MWL C-FIND Responses from FHIR
+#### Use case 1: Populate DICOM MWL C-FIND information model from FHIR resources
 
-#### Use case 2: FHIR-based MWL query
+#### Use case 2: Reconcile DICOM images against FHIR order information
+
+#### Use case 3: FHIR-based MWL query
 
 ### Glossary<a name="glossary"></a>
 

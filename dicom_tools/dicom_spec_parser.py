@@ -36,6 +36,7 @@ def get_dicom_object(object_uri: str, object_class: str) -> Optional[Tag]:
 
     return dicom_object
 
+
 def get_dicom_table(table_uri: str) -> Optional[Tag]:
     """Get a table from the DICOM standard.
 
@@ -79,12 +80,13 @@ def get_data_elements(include_dicos: bool = False) \
                                                                                                '')
                 data_element_list[tag] \
                     = DataElement(tag=element_fields[0].text.strip(),
-                                  name=element_fields[1].text.strip(),
+                                  name=element_fields[1].text.strip().replace('â\x80\x8b', ''),
                                   keyword=element_fields[2].text.replace('â\x80\x8b', '').strip(),
                                   vr=element_fields[3].text.strip(),
                                   vm=element_fields[4].text.strip(),
                                   retired='RET' in element_fields[5].text)
     return data_element_list
+
 
 def get_uid_values(include_retired: bool = True) -> List[List[str]]:
     """Get UID values from DICOM standard.
@@ -125,6 +127,7 @@ def get_transfer_syntaxes(include_retired: bool = True) -> List[List[str]]:
             ])
     return transfer_syntaxes
 
+
 def get_sop_classes(include_retired: bool = True) -> List[List[str]]:
     """Get SOP classes from DICOM standard.
 
@@ -140,6 +143,7 @@ def get_sop_classes(include_retired: bool = True) -> List[List[str]]:
                 uid[2]
             ])
     return sop_classes
+
 
 def get_defined_terms(table_uri: str = None, defined_terms_table: Tag = None) -> Dict[str, str]:
     """Get defined terms from DICOM standard.
@@ -158,8 +162,13 @@ def get_defined_terms(table_uri: str = None, defined_terms_table: Tag = None) ->
         print('Error: Term and definition lists do not match')
         return defined_terms
     for i in range(len(term_list)):
-        defined_terms[term_list[i].text.strip()] = (definition_list[i].text.strip()
-                                                    or term_list[i].text.strip())
+        term = term_list[i].text.strip()
+        definition = definition_list[i].find('p').text.strip()
+        if not definition:
+            definition = term
+        if 'â\x80¦' in definition:
+            definition = definition.replace('â\x80¦', '...')
+        defined_terms[term_list[i].text.strip()] = definition
 
     return defined_terms
 
@@ -179,7 +188,11 @@ def get_defined_terms_tables():
     try:
         dicom_object = object_page.select('div[class=section]')
         for section in dicom_object:
-            section_title_block = section.find('h5', attrs={"class": "title"})
+            section_title_block = section.find('h6', attrs={"class": "title"})
+            if not section_title_block:
+              section_title_block = section.find('h5', attrs={"class": "title"})
+            if not section_title_block:
+              section_title_block = section.find('h4', attrs={"class": "title"})
             if section_title_block:
                 section_title = section_title_block.find('a')['id']
                 defined_terms_table = section.find('dl', attrs={"class": "variablelist compact"})
@@ -187,10 +200,12 @@ def get_defined_terms_tables():
                     print(f'Found defined terms table in section: {section_title}')
                     defined_terms_tables[section_title] \
                         = get_defined_terms(defined_terms_table=defined_terms_table)
+
         return defined_terms_tables
     except IndexError:
         print('Error: Could not find object')
         return None
+
 
 def get_module_tables():
     """Get table contents from DICOM standard."""
@@ -203,7 +218,7 @@ def get_module_tables():
             table_title = table.find('p', attrs={"class": "title"})
             if table_title and ('Module Attributes' in table_title.text
                                 or 'Macro Attributes' in table_title.text):
-                module_tables[table_title.text.strip().replace('Â','')] = table
+                module_tables[table_title.text.strip().replace('Â', '')] = table
         return module_tables
     except IndexError:
         print('Error: Could not find object')
@@ -228,13 +243,14 @@ def get_attribute_defined_terms():
                         and defined_terms_reference["href"].replace('#', '') in section_tables):
                     section_reference = defined_terms_reference["href"].replace('#', '')
                     print(f'Found defined terms reference for {title}:{attribute_tag} to '
-                      f'{section_reference}')
+                          f'{section_reference}')
                     defined_terms_dict = section_tables[section_reference]
                 else:
                     defined_terms_table \
                         = attribute_fields[3].find('dl', attrs={"class": "variablelist compact"})
                     if defined_terms_table:
-                        defined_terms_dict = get_defined_terms(defined_terms_table=defined_terms_table)
+                        defined_terms_dict = get_defined_terms(
+                            defined_terms_table=defined_terms_table)
                     print(f'Found defined terms table in module: {title}')
                 if defined_terms_dict:
                     if attribute_tag in defined_terms_tables:
@@ -244,7 +260,7 @@ def get_attribute_defined_terms():
                                   f'{defined_terms_tables[attribute_tag]}')
                             defined_terms_tables[attribute_tag].update(defined_terms_dict)
                     else:
-                        defined_terms_tables[attribute_tag]=defined_terms_dict
+                        defined_terms_tables[attribute_tag] = defined_terms_dict
                         print(f'Adding defined terms table for {title}: {attribute_tag}\n'
                               f'{defined_terms_tables[attribute_tag]}')
     return defined_terms_tables

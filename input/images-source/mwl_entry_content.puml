@@ -1,0 +1,20 @@
+@startuml mwl_entry_content
+left to right direction
+
+component "Modality Worklist (MWL) Entry" as mwl_entry {
+   component "Patient" as patient {
+   }
+   component "Visit (Encounter)" as encounter {
+   }
+   component "Imaging Service Request (ServiceRequest)" as imaging_service_request {
+   }
+   component "Requested Procedure (ServiceRequest)" as requested_procedure {
+       component "ImagingStudy" as imaging_study {
+       }
+   }
+   component "Scheduled Procedure Step (Task)" as scheduled_procedure_step {
+     component "Scheduled Station (Device)" as scheduled_station {
+     }
+   }
+}
+@enduml
