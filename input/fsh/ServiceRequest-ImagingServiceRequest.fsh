@@ -34,11 +34,11 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 * identifier[fillerOrder].value 1..1
 * identifier[fillerOrder] ^short = "Filler Identifier"
 
-// TBD -- constrain values of status?
-// TBD -- constrain values of intent?
+* status from ImagingServiceRequestStatusVS (required)
+
 * intent = #order
 
-// TODO -- disallow timing
+* occurrence[x] only dateTime
 
 * category = http://snomed.info/sct#363679005 "Imaging"
 
@@ -51,9 +51,33 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 // Requesting / Referring Physician, Requesting Service
 * requester only Reference(ImagingPractitionerProfile or ImagingOrganizationProfile)
 
-// Mapping to be created
-// code -> OBR-4
-// reason -> OBR-31
+Instance: ImagingServiceRequest-PlacerExample
+InstanceOf: ImagingServiceRequestProfile
+Usage: #example
+Description: "An example of a RAD-2 Placer Order, submitted before a Filler Order Number has been assigned. Used as the ImagingServiceRequest entry in a $create-order request Bundle."
+
+* id = "example-imaging-service-request-placer"
+
+* identifier[accessionNumber]
+  * type
+    * coding
+      * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+      * code = #ACSN "Accession ID"
+  * system = "http://goodhealth.org/acsn"
+  * value = "A12345"
+* identifier[placerOrder]
+  * type
+    * coding
+      * system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+      * code = #PLAC "Placer Identifier"
+  * system = "http://goodhealth.org/plac"
+  * value = "P12345"
+
+* category = http://snomed.info/sct#363679005 "Imaging"
+* status = #active
+* intent = #order
+
+* subject = Reference(ImagingPatient-Example)
 
 Instance: ImagingServiceRequest-Example
 InstanceOf: ImagingServiceRequestProfile

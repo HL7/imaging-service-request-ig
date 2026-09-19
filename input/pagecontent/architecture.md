@@ -33,6 +33,7 @@ Each MWL entry corresponds to a Scheduled Procedure Step, modeled as a Task reso
    - `identifier[fillerOrder]`
    - `subject` -> `ImagingPatientProfile`
    - This provides the ordering and accession identifiers needed for the MWL entry.
+   - **Note:** `identifier[fillerOrder]` is populated once the DSS/Order Filler has processed the order (RAD-3); it is absent on a freshly-submitted RAD-2 order. `CreateOrderRequestBundle` enforces this via an invariant on its `imagingServiceRequest` entry rather than a separate profile, since both states are the same resource at different points in its lifecycle.
 
 5. If the Study Instance UID is needed, resolve the associated **ImagingStudy**:
    - Use `ImagingStudy.basedOn` referencing the same `ImagingServiceRequestProfile` and/or the same Requested Procedure.
