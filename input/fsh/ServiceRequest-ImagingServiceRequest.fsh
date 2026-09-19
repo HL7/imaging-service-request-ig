@@ -46,7 +46,10 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 
 // Associated Patient
 * subject only Reference(ImagingPatientProfile)
+* encounter only Reference(ImagingVisitProfile)
 
+// Requesting / Referring Physician, Requesting Service
+* requester only Reference(ImagingPractitionerProfile or ImagingOrganizationProfile)
 
 // Mapping to be created
 // code -> OBR-4

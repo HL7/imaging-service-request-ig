@@ -48,6 +48,12 @@ Description: "The CapabilityStaement of the RIS interface to the MWL"
       * code = #read
   * resource[+]
     * type = #Practitioner
+    * profile = Canonical( ImagingPractitionerProfile )
+    * interaction[+]
+      * code = #read
+  * resource[+]
+    * type = #Organization
+    * profile = Canonical( ImagingOrganizationProfile )
     * interaction[+]
       * code = #read
   * resource[+]
@@ -58,6 +64,7 @@ Description: "The CapabilityStaement of the RIS interface to the MWL"
 
 Instance: CreateOrderOperation
 InstanceOf: OperationDefinition
+Usage: #definition
 * url = "http://tbd/create-order"
 * version = "0.0.1"
 * name = "Creates a new order based on the provided information."
@@ -90,6 +97,7 @@ This operation creates a new order based on the included Bundle.
 
 Instance: CancelOrderOperation
 InstanceOf: OperationDefinition
+Usage: #definition
 * url = "http://tbd/cancel-order"
 * version = "0.0.1"
 * name = "Cancels an order based on the provided information."

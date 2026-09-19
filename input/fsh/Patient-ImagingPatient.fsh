@@ -29,3 +29,5 @@ Description: "An example of the Patient resource included in a MWL response."
 * name
   * family = "PLUTONIUM"
   * given = "DANIELLE"
+* birthDate = "1958-04-12"
+* gender = #female
