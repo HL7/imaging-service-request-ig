@@ -38,6 +38,32 @@ Description:    "Bundle submitted as the `order` input parameter of the $create-
 * entry[performingOrganization].resource only Organization
 * entry[performingOrganization] ^short = "The requesting/performing service, if different from the entering organization"
 
+Instance: CreateOrderRequestBundle-Example
+InstanceOf: CreateOrderRequestBundle
+Usage: #example
+Description: "An example $create-order request Bundle containing the resources needed to create a new MWL entry (RAD-2 New Order)."
+
+* id = "example-create-order-request-bundle"
+* type = #collection
+
+* entry[patient].fullUrl = "http://goodhealth.org/fhir/Patient/example-imaging-patient"
+* entry[patient].resource = ImagingPatient-Example
+
+* entry[visit].fullUrl = "http://goodhealth.org/fhir/Encounter/example-imaging-visit"
+* entry[visit].resource = ImagingVisit-Example
+
+* entry[imagingServiceRequest].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-service-request"
+* entry[imagingServiceRequest].resource = ImagingServiceRequest-Example
+
+* entry[requestedProcedure].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-requested-procedure"
+* entry[requestedProcedure].resource = ImagingRequestedProcedure-Example
+
+* entry[requester].fullUrl = "http://goodhealth.org/fhir/Practitioner/example-imaging-practitioner"
+* entry[requester].resource = ImagingPractitioner-Example
+
+* entry[performingOrganization].fullUrl = "http://goodhealth.org/fhir/Organization/example-imaging-organization"
+* entry[performingOrganization].resource = ImagingOrganization-Example
+
 Profile:        OrderBundle
 Parent:         Bundle
 Id:             order-bundle
@@ -81,3 +107,32 @@ Description:    "Bundle returned as the `return` output parameter of the $create
 
 * entry[scheduledStation].resource only Device
 * entry[scheduledStation] ^short = "The scheduled station(s)/AE(s) assigned as the requested performer of the scheduled procedure step(s)"
+
+Instance: OrderBundle-Example
+InstanceOf: OrderBundle
+Usage: #example
+Description: "An example order result Bundle returned by $create-order, containing the resulting MWL entry and its resolvable reference chain."
+
+* id = "example-order-bundle"
+* type = #collection
+
+* entry[patient].fullUrl = "http://goodhealth.org/fhir/Patient/example-imaging-patient"
+* entry[patient].resource = ImagingPatient-Example
+
+* entry[visit].fullUrl = "http://goodhealth.org/fhir/Encounter/example-imaging-visit"
+* entry[visit].resource = ImagingVisit-Example
+
+* entry[imagingServiceRequest].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-service-request"
+* entry[imagingServiceRequest].resource = ImagingServiceRequest-Example
+
+* entry[requestedProcedure].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-requested-procedure"
+* entry[requestedProcedure].resource = ImagingRequestedProcedure-Example
+
+* entry[scheduledProcedureStep].fullUrl = "http://goodhealth.org/fhir/Task/example-imaging-scheduled-procedure-step"
+* entry[scheduledProcedureStep].resource = ImagingScheduledProcedureStep-Example
+
+* entry[imagingStudy].fullUrl = "http://goodhealth.org/fhir/ImagingStudy/example-requested-procedure-imaging-study"
+* entry[imagingStudy].resource = ImagingStudyRequestedProcedure-Example
+
+* entry[scheduledStation].fullUrl = "http://goodhealth.org/fhir/Device/example-scheduled-station"
+* entry[scheduledStation].resource = ScheduledStation-Example

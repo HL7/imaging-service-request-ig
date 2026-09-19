@@ -65,3 +65,16 @@ This preserves the intended MWL structure:
 - **ImagingStudy** = study identity
 - **Patient / Encounter** = demographics and visit context
 - **Device (ScheduledStation)** = performer / location context
+
+### Relationship to the Performed Procedure<a name="mwl-procedure-relationship"></a>
+
+The DICOM Modality Worklist itself only describes *scheduled* work; it does not carry information about the *performed* procedure. Once a Scheduled Procedure Step has been carried out, its fulfillment can optionally be represented as a FHIR `Procedure` resource (`ImagingProcedureProfile`). This profile only constrains how `Procedure` relates to the other MWL resources — it does not model DICOM Performed Procedure Step (MPPS) content, which is out of scope for RAD-2/RAD-3 and this IG.
+
+```
+Procedure (ImagingProcedureProfile)
+  -> basedOn[requestedProcedureRef] -> RequestedProcedure
+  -> subject -> Patient
+  -> encounter -> Visit
+```
+
+`Procedure` is not part of the MWL query/response itself and is not referenced by `Task`; it is a downstream resource that an implementer may create after the scheduled procedure step has been performed, linked back to the same `RequestedProcedure` that the `Task` is `basedOn`.
