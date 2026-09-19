@@ -296,21 +296,27 @@ Usage:          #definition
 
 * group[+]
   * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"
-  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.4.11.html"
+  * target = "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.html#sect_C.7.1"
   * element[+]
     * code = #requested-procedure-imaging-study
     * target[+]
-      * code = #RequestedProcedure
-      * display = "Requested Procedure"
-      * relationship = #source-is-narrower-than-target 
+      * code = #StudyInstanceUID
+      * display = "Study Instance UID (0020,000D)"
+      * relationship = #equivalent
+      * comment = "The canonical DICOM study identity carried on the ImagingStudy resource"
+      * dependsOn
+        * attribute = #SystemType
+        * valueString = "urn:dicom:uid"
+  * element[+]
     * code = #requested-procedure-imaging-study.identifier
     * target[+]
       * code = #StudyInstanceUID
       * display = "Study Instance UID (0020,000D)"
       * relationship = #equivalent
+      * comment = "The study identifier is held in ImagingStudy.identifier[studyInstanceUid]"
       * dependsOn
         * attribute = #SystemType
-        * valueString = "urn:dicom:uid"  
+        * valueString = "urn:dicom:uid" 
 
 * group[+]
   * source = "http://hl7.org/fhir/uv/imaging-service-request-ig/StructureDefinition"

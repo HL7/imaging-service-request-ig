@@ -33,7 +33,7 @@ Usage:          #definition
     * display = "RequestedProcedure.identifier"
 // TODO -- Define IdentifierType for Requested Procedure ID / Study ID -- not Study UID
 
-// StudyUID likely encoded in order detail
+// Study Instance UID is modeled on ImagingStudy, not on the RequestedProcedure resource itself.
 
 * group.element[1]
   * code = #DICOM.ReasonForTheRequestedProcedure

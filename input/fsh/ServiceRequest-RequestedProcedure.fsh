@@ -30,6 +30,17 @@ Description:    "DICOM MWL Requested Procedure Mapping to ServiceRequest"
 // Associated Visit
 * encounter only Reference(ImagingVisitProfile)
 
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.rules = #open
+* identifier ^slicing.ordered = false
+* identifier ^slicing.description = "Requested Procedure Identifiers"
+
+* identifier contains requestedProcedureId 0..1
+* identifier[requestedProcedureId].system = "http://goodhealth.org/requestedprocedure"
+* identifier[requestedProcedureId].value 1..1
+* identifier[requestedProcedureId] ^short = "Requested Procedure Identifier"
+
 // Mapping to do
 // code -> OBR-44
 
@@ -40,10 +51,10 @@ Description: "An example of a DICOM ImagingRequestedProcedure in FHIR."
 
 * id = "example-imaging-requested-procedure"
 
-* identifier
+* identifier[requestedProcedureId]
   * type
     * text = "Requested Procedure ID"
-  * system = "http://goodhealth.org/requestedporcedure"
+  * system = "http://goodhealth.org/requestedprocedure"
   * value = "RP12345"
 
 * category = http://snomed.info/sct#363679005 "Imaging"

@@ -24,6 +24,9 @@ Description:    "DICOM MWL Scheduled Procedure Step Mapping to Task"
 
 * intent = #plan
 
+* for only Reference(ImagingPatientProfile)
+* encounter only Reference(ImagingVisitProfile)
+
 * code 1..1
   * text ^short = "Scheduled Procedure Step Description (0040,0007)"
   * coding ^short = "Scheduled Protocol Code Sequence (0040,0008)"

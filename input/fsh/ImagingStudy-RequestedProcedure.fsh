@@ -7,8 +7,8 @@ Alias: HL7IdType = http://terminology.hl7.org/CodeSystem/v2-0203
 Profile:        ImagingStudyRequestedProcedureProfile
 Parent:         ImagingStudy
 Id:             requested-procedure-imaging-study
-Title:          "ImagingStudy - DICOM MWL Requested Procedure Mapping"
-Description:    "DICOM MWL Requested Procedure Mapping to ImagingStudy"
+Title:          "ImagingStudy - DICOM MWL Study Instance Mapping"
+Description:    "DICOM MWL Study Instance associated with an imaging service request and scheduled procedure step"
 
 * ^abstract = false
 * insert DICOMMWLStructureDefinitionContent
@@ -24,14 +24,17 @@ Description:    "DICOM MWL Requested Procedure Mapping to ImagingStudy"
 * identifier contains studyInstanceUid 1..1
 * identifier[studyInstanceUid].system = "urn:dicom:uid"
 
-// Associated ImagingServiceRequest
+// Associated ImagingServiceRequest / RequestedProcedure
 * basedOn ^slicing.discriminator.type = #type
 * basedOn ^slicing.discriminator.path = "reference"
 * basedOn ^slicing.rules = #open
-* basedOn ^slicing.description = "ImagingServiceRequest"
+* basedOn ^slicing.description = "ImagingServiceRequest / RequestedProcedure"
 
-* basedOn contains imagingServiceRequestRef 1..1
+* basedOn contains imagingServiceRequestRef 0..1
 * basedOn[imagingServiceRequestRef] only Reference(ImagingServiceRequestProfile)
+
+* basedOn contains requestedProcedureRef 0..1
+* basedOn[requestedProcedureRef] only Reference(ImagingRequestedProcedureProfile)
 
 // Associated Patient
 * subject only Reference(ImagingPatientProfile)
