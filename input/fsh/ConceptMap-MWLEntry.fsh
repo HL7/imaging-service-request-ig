@@ -326,4 +326,16 @@ Usage:          #definition
     * target[+]
       * code = #ScheduledProcedureStep
       * display = "Scheduled Procedure Step"
-      * relationship = #equivalent        
+      * relationship = #equivalent
+  * element[+]
+    * code = #imaging-scheduled-procedure-step.code.text
+    * target[+]
+      * code = #ScheduledProcedureStepDescription
+      * display = "Scheduled Procedure Step Description (0040,0007)"
+      * relationship = #equivalent
+  * element[+]
+    * code = #imaging-scheduled-procedure-step.code.coding
+    * target[+]
+      * code = #ScheduledProtocolCodeSequence
+      * display = "Scheduled Protocol Code Sequence (0040,0008)"
+      * relationship = #equivalent

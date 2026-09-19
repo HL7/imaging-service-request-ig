@@ -61,6 +61,11 @@ Description: "The CapabilityStaement of the RIS interface to the MWL"
     * profile = Canonical( ImagingStudyRequestedProcedureProfile )
     * interaction[+]
       * code = #read
+  * resource[+]
+    * type = #Procedure
+    * profile = Canonical( ImagingProcedureProfile )
+    * interaction[+]
+      * code = #read
 
 Instance: CreateOrderOperation
 InstanceOf: OperationDefinition

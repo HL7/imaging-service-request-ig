@@ -28,11 +28,9 @@ Description:    "DICOM MWL Scheduled Procedure Step Mapping to Task"
 * encounter only Reference(ImagingVisitProfile)
 
 * code 1..1
-  * text ^short = "Scheduled Procedure Step Description (0040,0007)"
-  * coding ^short = "Scheduled Protocol Code Sequence (0040,0008)"
 
 // Modality
-* input ^slicing.discriminator.type = #value
+* input ^slicing.discriminator.type = #pattern
 * input ^slicing.discriminator.path = "type"
 * input ^slicing.rules = #open
 * input ^slicing.description = "Modality"
