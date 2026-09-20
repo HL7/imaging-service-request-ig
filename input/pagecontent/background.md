@@ -63,9 +63,12 @@ The actors shown in the workflow are:
 
 * EHR / EMR (Order Placer)
 * RIS (DSS / Order Filler)
-* FHIR service (MWL data)
 * Modality (Acquisition Modality)
 * Image Archive / Image Manager
+
+The RIS owns the FHIR resources defined by this guide and exposes the
+`$create-order` operation. The EHR / EMR invokes that operation directly on the
+RIS using the RAD-2 request bundle.
 
 #### Transactions
 

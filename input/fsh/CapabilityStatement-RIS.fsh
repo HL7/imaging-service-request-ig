@@ -17,7 +17,7 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
   * operation[+]
     * name = #create-order
     * definition = Canonical( CreateOrderOperation )
-    * documentation = "Creates a new MWL entry based on a provided ImagingServiceRequest and RequestedProcedureServiceRequests"
+    * documentation = "Accepts a RAD-2 CreateOrderRequestBundle from the EHR / EMR Order Placer and creates the RIS-owned FHIR resources for a new MWL entry"
   * resource[+]
     * type = #ServiceRequest
     * interaction[+]
@@ -133,4 +133,3 @@ This operation cancels a order based on the included Bundle.
   * max = "1"
   * type = #OperationOutcome
   * targetProfile = Canonical( OperationOutcome )
-

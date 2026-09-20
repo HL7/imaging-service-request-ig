@@ -62,7 +62,7 @@ Description:    "DICOM MWL Imaging Service Request Mapping to ServiceRequest"
 * requester only Reference(ImagingPractitionerProfile or ImagingOrganizationProfile)
 
 Instance: ImagingServiceRequest-PlacerExample
-InstanceOf: ImagingServiceRequestProfile
+InstanceOf: RAD2ImagingServiceRequestProfile
 Usage: #example
 Description: "An example of a RAD-2 Placer Order, submitted before a Filler Order Number has been assigned. Used as the ImagingServiceRequest entry in a $create-order request Bundle."
 

@@ -31,11 +31,11 @@ Description:    "Bundle submitted as the `order` input parameter of the $create-
 * entry[visit].resource only Encounter
 * entry[visit] ^short = "The Visit/Encounter associated with the order, if any"
 
-* entry[imagingServiceRequest].resource only ServiceRequest
-* entry[imagingServiceRequest] ^short = "The order-level ImagingServiceRequest (RAD-2 ORC/OBR order fields); must not yet carry a Filler Order Number"
+* entry[imagingServiceRequest].resource only RAD2ImagingServiceRequestProfile
+* entry[imagingServiceRequest] ^short = "The RAD-2 order-level ImagingServiceRequest; must not yet carry a Filler Order Number"
 * entry[imagingServiceRequest] obeys create-order-no-filler-order
 
-* entry[requestedProcedure].resource only ServiceRequest
+* entry[requestedProcedure].resource only ImagingRequestedProcedureProfile
 * entry[requestedProcedure] ^short = "One or more requested procedures for the order (RAD-2 OBR requested procedure fields)"
 
 * entry[requester].resource only Practitioner or Organization
@@ -69,6 +69,15 @@ Description: "An example $create-order request Bundle containing the resources n
 
 * entry[performingOrganization].fullUrl = "http://goodhealth.org/fhir/Organization/example-imaging-organization"
 * entry[performingOrganization].resource = ImagingOrganization-Example
+
+Profile:        RAD2ImagingServiceRequestProfile
+Parent:         ImagingServiceRequestProfile
+Id:             rad2-imaging-service-request
+Title:          "ServiceRequest - RAD-2 Imaging Service Request"
+Description:    "The ImagingServiceRequest submitted by the EHR / EMR Order Placer to the RIS / DSS as the order-level ServiceRequest in a RAD-2 create-order request. The RIS assigns the Filler Order Number during processing; it is therefore absent from this submitted resource."
+
+* ^abstract = false
+* identifier[fillerOrder] 0..0
 
 Profile:        OrderBundle
 Parent:         Bundle
