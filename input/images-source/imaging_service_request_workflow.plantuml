@@ -1,0 +1,56 @@
+@startuml imaging_service_request_workflow
+title Imaging Service Request workflow (excluding MPPS)
+
+autonumber
+
+actor "EHR / EMR\n(Order Placer)" as ehr
+participant "RIS\n(DSS / Order Filler)" as ris
+participant "FHIR service\n(MWL data)" as fhir
+participant "Modality\n(Acquisition Modality)" as modality
+participant "Image archive /\nImage Manager" as archive
+
+group RAD-2: create order
+  ehr -> ris: Create imaging order
+  ris -> fhir: $create-order\n(CreateOrderRequestBundle)
+  note right of fhir
+    ServiceRequest (ImagingServiceRequest)
+    ServiceRequest (RequestedProcedure)
+    Patient / Encounter
+  end note
+  fhir --> ris: OrderBundle\n(including Task / scheduled step)
+end
+
+group RAD-5: query modality worklist
+  modality -> ris: DICOM C-FIND\n(MWL query parameters)
+  ris -> fhir: Resolve MWL entry\nfrom Task and references
+  note right of fhir
+    Task (scheduled procedure step)
+      -> RequestedProcedure
+      -> ImagingServiceRequest
+      -> Patient / Encounter
+      -> Device (scheduled station)
+      -> ImagingStudy (Study Instance UID)
+  end note
+  fhir --> ris: FHIR resource data
+  ris --> modality: DICOM C-FIND-RSP\n(MWL entry)
+end
+
+group Acquisition and reconciliation
+  modality -> archive: DICOM study\n(images)
+  modality -> ris: Completion / status information\n(DICOM or local integration)
+  ris -> fhir: Record performed work\n(optional Procedure) and update ImagingStudy
+  fhir --> ris: Updated resource state
+end
+
+group RAD-3 / RAD-4 status communication
+  ris --> ehr: Updated order status\n(RAD-3 / FHIR exchange)
+  ris -> archive: Procedure/study reconciliation\n(RAD-4 / RAD-13)
+end
+
+note over modality,ris
+  The IG defines the FHIR profiles and mappings for the order/MWL
+  resource model. The completion transaction and the mechanism used
+  to update the EHR are not specified as a single end-to-end workflow.
+end note
+
+@enduml

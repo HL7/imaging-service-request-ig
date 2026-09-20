@@ -1,5 +1,19 @@
 ### DICOM Modality Worklist (MWL) Information Model<a name="mwl-information-model"></a>
 
+### Profile-aligned workflow<a name="profile-aligned-workflow"></a>
+
+The diagram below shows how the profiles and operations in this guide fit into a
+typical order-to-acquisition workflow. The source is available in
+`input/images-source/imaging_service_request_workflow.plantuml`.
+
+The `$create-order` operation represents the order submission to the RIS/DSS
+and returns an `OrderBundle` containing the resources needed to resolve a
+Modality Worklist entry. A DICOM MWL C-FIND query is then answered by mapping
+the scheduled `Task` and its reference chain to a DICOM worklist response.
+The acquisition-completion and EHR status-update exchanges are shown as
+integration points: this guide provides relevant profiles, but does not define
+one end-to-end transaction for them.
+
 While each DICOM MWL entry is represented in FHIR as a single `Task` resource, the MWL entry is conceptually composed of multiple related resources. The following table shows the DICOM MWL information model and its corresponding FHIR resources:
 
 <figure>
@@ -8,13 +22,6 @@ While each DICOM MWL entry is represented in FHIR as a single `Task` resource, t
   <p></p>
 </figure>
 
-However, in a typical workflow, each Imaging Service Request includes only a single Requested Procedure:
-
-<figure>
-  {% include mwl_information_model_simplified.svg %}
-  <figcaption><b>Figure: Modality Worklist Information Model (simplified)</b></figcaption>
-  <p></p>
-</figure>
 
 ### Structure of a Modality Worklist Query Response<a name="mwl-structure"></a>
 
