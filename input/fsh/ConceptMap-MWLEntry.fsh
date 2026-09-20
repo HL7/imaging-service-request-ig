@@ -152,22 +152,6 @@ Usage:          #definition
         * attribute = #IdentifierType
         * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
     * target[+]
-      * code = #PlacerOrderNumberImagingServiceRequest
-      * display = "Placer Order Number / Imaging Service Request (0040,2016)"
-      * relationship = #source-is-broader-than-target   
-      * comment = "The value of the identifier of type 'PLAC'"   
-      * dependsOn
-        * attribute = #IdentifierType
-        * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC
-    * target[+]
-      * code = #OrderPlacerIdentifierSequence
-      * display = "Order Placer Identifier Sequence (0040,0026)"
-      * relationship = #source-is-broader-than-target
-      * comment = "The system of the identifier of type 'PLAC'"
-      * dependsOn
-        * attribute = #IdentifierType
-        * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC
-    * target[+]
       * code = #FillerOrderNumberImagingServiceRequest
       * display = "Filler Order Number / Imaging Service Request (0040,2017)"
       * relationship = #source-is-broader-than-target   
@@ -183,6 +167,18 @@ Usage:          #definition
       * dependsOn
         * attribute = #IdentifierType
         * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#FILL    
+  * element[+]
+    * code = #imaging-service-request.basedOn
+    * target[+]
+      * code = #PlacerOrderNumberImagingServiceRequest
+      * display = "Placer Order Number / Imaging Service Request (0040,2016)"
+      * relationship = #equivalent
+      * comment = "The value of the logical basedOn[placerOrderRef].identifier; the RAD-2 order itself is not modeled as a FHIR resource in this IG"
+    * target[+]
+      * code = #OrderPlacerIdentifierSequence
+      * display = "Order Placer Identifier Sequence (0040,0026)"
+      * relationship = #equivalent
+      * comment = "The system of the logical basedOn[placerOrderRef].identifier; the RAD-2 order itself is not modeled as a FHIR resource in this IG"
   * element[+]
     * code = #imaging-service-request.requester
     * target[+]
