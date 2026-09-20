@@ -1,15 +1,20 @@
 ### DICOM Modality Worklist (MWL) Information Model<a name="mwl-information-model"></a>
 
-### Profile-aligned workflow<a name="profile-aligned-workflow"></a>
+### Workflow responsibilities<a name="profile-aligned-workflow"></a>
 
-The diagram below shows how the profiles and operations in this guide fit into a
-typical order-to-acquisition workflow. The source is available in
+The workflow diagram in the [Background](background.html#use-cases) chapter
+shows how the profiles and operations in this guide fit into a typical
+order-to-acquisition workflow. Its source is available in
 `input/images-source/imaging_service_request_workflow.plantuml`.
 
 The `$create-order` operation is invoked by the EHR / EMR directly on the RIS/DSS
 and accepts a RAD-2 `CreateOrderRequestBundle`. The RIS creates and owns the
-FHIR resources needed to resolve a Modality Worklist entry. A DICOM MWL C-FIND query is then answered by mapping
-the scheduled `Task` and its reference chain to a DICOM worklist response.
+FHIR resources needed to resolve a Modality Worklist entry. The Modality
+Worklist Manager queries those RIS-owned resources through the RIS FHIR
+interface, transforms the DICOM MWL C-FIND criteria into FHIR queries, and
+transforms the matching FHIR resources into the DICOM worklist response. The
+Modality Worklist Manager may be grouped with the RIS or Image Archive / Image
+Manager, but the RIS remains the FHIR resource owner.
 The later RIS-to-EHR status response is modeled by
 `RAD3OrderStatusUpdateBundle`; its transport remains an integration point.
 
