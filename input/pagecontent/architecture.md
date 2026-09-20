@@ -6,8 +6,9 @@ The diagram below shows how the profiles and operations in this guide fit into a
 typical order-to-acquisition workflow. The source is available in
 `input/images-source/imaging_service_request_workflow.plantuml`.
 
-The `$create-order` operation represents the order submission to the RIS/DSS
-and returns an `OrderBundle` containing the resources needed to resolve a
+The `$create-order` operation is invoked by the EHR / EMR directly on the RIS/DSS
+and accepts a RAD-2 `CreateOrderRequestBundle`. It returns an `OrderBundle`
+containing the resources needed to resolve a
 Modality Worklist entry. A DICOM MWL C-FIND query is then answered by mapping
 the scheduled `Task` and its reference chain to a DICOM worklist response.
 The acquisition-completion and EHR status-update exchanges are shown as
