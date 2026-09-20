@@ -43,10 +43,11 @@ Each Modality Worklist Entry / MWL Query Response contains the following segment
 
 ### MWL Resource Reference Chain<a name="mwl-reference-chain"></a>
 
-Each MWL entry corresponds to a Scheduled Procedure Step, modeled as a Task resource (`ImagingScheduledProcedureStepProfile`). To assemble a complete MWL entry, resolve the following reference chain starting from that Task:
+Each MWL entry corresponds to an imaging procedure step, modeled as a Task resource (`ImagingProcedureStepProfile`). The same Task is updated with performed-work information after MPPS. To assemble a complete MWL entry, resolve the following reference chain starting from that Task:
 
-1. **Task** (`ImagingScheduledProcedureStepProfile`)
+1. **Task** (`ImagingProcedureStepProfile`)
    - This is the scheduled procedure step and the starting point for the MWL entry.
+   - `identifier[scheduledProcedureStepId]` carries the DICOM Scheduled Procedure Step ID used to correlate MPPS.
 
 2. **Task.basedOn[requestedProcedureRef]**
    - Resolves to the Requested Procedure resource (`ImagingRequestedProcedureProfile`), a `ServiceRequest`.
@@ -98,12 +99,13 @@ This preserves the intended MWL structure:
 
 ### Relationship to the Performed Procedure<a name="mwl-procedure-relationship"></a>
 
-The DICOM Modality Worklist itself only describes *scheduled* work; it does not carry information about the *performed* procedure. Once a Scheduled Procedure Step has been carried out, its execution can be represented as a FHIR `Task` resource (`ImagingPerformedProcedureStepProfile`) that records the actual execution period. Both scheduled and performed procedure-step profiles derive from the abstract `ImagingProcedureStepProfile`, which supplies their common requested-procedure linkage, patient and encounter context, procedure code, modality, and order-derived Task intent.
-
-The performed-step Task and the scheduled-step Task both reference the same Requested Procedure. The performed-step Task is not part of the MWL query/response.
+The DICOM Modality Worklist itself describes *scheduled* work. MPPS carries
+performed-work information back to the Modality Worklist Manager, which updates
+the same FHIR `Task` resource with its execution period and final status. The
+performed-step state is not represented by a second Task.
 
 ```
-Task (ImagingPerformedProcedureStepProfile)
+Task (ImagingProcedureStepProfile)
   -> basedOn[requestedProcedureRef] -> RequestedProcedure
   -> for -> Patient
   -> encounter -> Visit
@@ -118,4 +120,7 @@ Procedure (ImagingProcedureProfile)
   -> encounter -> Visit
 ```
 
-`Procedure` is not part of the MWL query/response itself and is not referenced by `Task`; it is a downstream resource that an implementer may create after the scheduled procedure step has been performed, linked back to the same `RequestedProcedure` that the Tasks are `basedOn`.
+`Procedure` is not part of the MWL query/response itself and is not referenced by
+`Task`; it is a downstream resource that an implementer may create after the
+procedure step has been performed, linked back to the same `RequestedProcedure`
+that the Task is `basedOn`.

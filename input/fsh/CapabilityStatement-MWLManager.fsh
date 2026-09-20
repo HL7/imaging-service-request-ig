@@ -25,11 +25,13 @@ Description: "The CapabilityStatement of the Modality Worklist Manager. The Moda
       * code = #search-type
   * resource[+]
     * type = #Task
-    * profile = Canonical(ImagingScheduledProcedureStepProfile)
+    * profile = Canonical(ImagingProcedureStepProfile)
     * interaction[+]
       * code = #read
     * interaction[+]
       * code = #search-type
+    * interaction[+]
+      * code = #update
   * resource[+]
     * type = #Patient
     * profile = Canonical(ImagingPatientProfile)
@@ -58,3 +60,14 @@ Description: "The CapabilityStatement of the Modality Worklist Manager. The Moda
       * code = #read
     * interaction[+]
       * code = #search-type
+    * interaction[+]
+      * code = #update
+  * resource[+]
+    * type = #Procedure
+    * profile = Canonical(ImagingProcedureProfile)
+    * interaction[+]
+      * code = #read
+    * interaction[+]
+      * code = #search-type
+    * interaction[+]
+      * code = #update

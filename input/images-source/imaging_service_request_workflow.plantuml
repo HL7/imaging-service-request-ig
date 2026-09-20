@@ -1,5 +1,5 @@
 @startuml imaging_service_request_workflow
-title Imaging Service Request workflow (excluding MPPS)
+title Imaging Service Request workflow
 
 autonumber
 
@@ -47,8 +47,8 @@ end
 
 group Use case 3: Reconcile acquired images and performed work
   modality -> archive: DICOM study\n(images)
-  modality -> ris: Completion / status information\n(DICOM or local integration)
-  ris -> ris: Record performed work\n(optional Procedure) and update ImagingStudy
+  modality -> mwl: DICOM MPPS messages\n(N-CREATE / N-SET)
+  mwl -> ris: Update performed-work FHIR resources\n(ImagingStudy, Procedure, performed-procedure-step)
 end
 
 group Use case 4: Communicate order status (RAD-3 / RAD-4)

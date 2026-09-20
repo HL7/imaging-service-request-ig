@@ -83,7 +83,7 @@ Profile:        OrderBundle
 Parent:         Bundle
 Id:             order-bundle
 Title:          "Bundle - Order Result"
-Description:    "RIS-owned bundle containing a resulting MWL entry/entries (Task/ScheduledProcedureStep) and the resources needed to resolve the full reference chain. It is used as the basis for status and order exchange profiles; it is not returned by the RAD-2 `$create-order` operation."
+Description:    "RIS-owned bundle containing a resulting MWL entry/entries (ImagingProcedureStep Task) and the resources needed to resolve the full reference chain. It is used as the basis for status and order exchange profiles; it is not returned by the RAD-2 `$create-order` operation."
 
 * ^abstract = false
 * type = #collection
@@ -115,7 +115,7 @@ Description:    "RIS-owned bundle containing a resulting MWL entry/entries (Task
 * entry[requestedProcedure] ^short = "The requested procedure(s) associated with the order"
 
 * entry[scheduledProcedureStep].resource only Task
-* entry[scheduledProcedureStep] ^short = "The scheduled procedure step(s) (MWL entries) created, updated, or cancelled for the requested procedure(s)"
+* entry[scheduledProcedureStep] ^short = "The imaging procedure step Task(s) (MWL entries) created, updated, or cancelled for the requested procedure(s)"
 
 * entry[imagingStudy].resource only ImagingStudy
 * entry[imagingStudy] ^short = "The ImagingStudy carrying the Study Instance UID assigned to the requested procedure, if scheduled"
@@ -143,8 +143,8 @@ Description: "An example RIS-owned order bundle containing the resulting MWL ent
 * entry[requestedProcedure].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-requested-procedure"
 * entry[requestedProcedure].resource = ImagingRequestedProcedure-Example
 
-* entry[scheduledProcedureStep].fullUrl = "http://goodhealth.org/fhir/Task/example-imaging-scheduled-procedure-step"
-* entry[scheduledProcedureStep].resource = ImagingScheduledProcedureStep-Example
+* entry[scheduledProcedureStep].fullUrl = "http://goodhealth.org/fhir/Task/example-imaging-procedure-step"
+* entry[scheduledProcedureStep].resource = ImagingProcedureStep-Example
 
 * entry[imagingStudy].fullUrl = "http://goodhealth.org/fhir/ImagingStudy/example-requested-procedure-imaging-study"
 * entry[imagingStudy].resource = ImagingStudyRequestedProcedure-Example

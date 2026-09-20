@@ -22,8 +22,8 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
 * Resource profiles
   * Imaging Service Request as ServiceRequest
   * Requested Procedure as a ServiceRequest
-  * Scheduled Procedure Step as Task
-  * Performed Procedure Step as Task (profile available; MPPS workflow is excluded from the diagram)
+  * Imaging Procedure Step as a Task, updated from scheduled to performed
+    state in response to MPPS
 * Content maps
   * ORM, OMI, OMG to Imaging Service Request and child resources
   * Imaging Service Request to DICOM MWL C-FIND RSP
@@ -127,11 +127,11 @@ The following SWF transactions are not modeled as FHIR operations:
 ### Use cases<a name="use-cases"></a>
 
 The following workflow shows how the actors and transactions in this guide fit
-together, excluding MPPS:
+together:
 
 <figure>
   {% include imaging_service_request_workflow.svg %}
-  <figcaption><b>Figure: Imaging Service Request workflow (excluding MPPS)</b></figcaption>
+  <figcaption><b>Figure: Imaging Service Request workflow</b></figcaption>
   <p></p>
 </figure>
 
@@ -171,11 +171,12 @@ not returned at this stage.
 
 #### Use case 3: Reconcile acquired images and performed work
 
-The modality sends the acquired study to the Image Archive / Image Manager and
-provides completion or status information to the RIS through an
-implementation-dependent integration. The RIS reconciles the performed work
-and may update `ImagingStudy`, `Procedure`, and performed-procedure-step
-resources.
+1. The modality sends the acquired study to the Image Archive / Image Manager.
+2. The modality sends DICOM Modality Performed Procedure Step (MPPS) messages
+   to the Modality Worklist Manager.
+3. In response, the Modality Worklist Manager updates the RIS-owned FHIR
+   resources representing the performed work, including `ImagingStudy`,
+   `Procedure`, and performed-procedure-step resources.
 
 #### Use case 4: Communicate order status
 

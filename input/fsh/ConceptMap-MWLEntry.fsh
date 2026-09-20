@@ -324,6 +324,16 @@ Usage:          #definition
       * display = "Scheduled Procedure Step"
       * relationship = #equivalent
   * element[+]
+    * code = #imaging-procedure-step.identifier[scheduledProcedureStepId]
+    * target[+]
+      * code = #ScheduledProcedureStepID
+      * display = "Scheduled Procedure Step ID (0040,0009)"
+      * relationship = #equivalent
+      * comment = "The identifier used by MPPS to correlate the performed step with the existing imaging procedure step Task"
+      * dependsOn
+        * attribute = #SystemType
+        * valueString = "urn:dicom:scheduled-procedure-step-id"
+  * element[+]
     * code = #imaging-scheduled-procedure-step.code.text
     * target[+]
       * code = #ScheduledProcedureStepDescription
