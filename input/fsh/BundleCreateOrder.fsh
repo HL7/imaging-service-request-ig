@@ -52,22 +52,16 @@ Description: "An example $create-order request Bundle containing the resources n
 * id = "example-create-order-request-bundle"
 * type = #collection
 
-* entry[patient].fullUrl = "http://goodhealth.org/fhir/Patient/example-imaging-patient"
 * entry[patient].resource = ImagingPatient-Example
 
-* entry[visit].fullUrl = "http://goodhealth.org/fhir/Encounter/example-imaging-visit"
 * entry[visit].resource = ImagingVisit-Example
 
-* entry[imagingServiceRequest].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-service-request-placer"
 * entry[imagingServiceRequest].resource = ImagingServiceRequest-PlacerExample
 
-* entry[requestedProcedure].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-requested-procedure"
 * entry[requestedProcedure].resource = ImagingRequestedProcedure-Example
 
-* entry[requester].fullUrl = "http://goodhealth.org/fhir/Practitioner/example-imaging-practitioner"
 * entry[requester].resource = ImagingPractitioner-Example
 
-* entry[performingOrganization].fullUrl = "http://goodhealth.org/fhir/Organization/example-imaging-organization"
 * entry[performingOrganization].resource = ImagingOrganization-Example
 
 Profile:        RAD2ImagingServiceRequestProfile
@@ -131,25 +125,18 @@ Description: "An example RIS-owned order bundle containing the resulting MWL ent
 * id = "example-order-bundle"
 * type = #collection
 
-* entry[patient].fullUrl = "http://goodhealth.org/fhir/Patient/example-imaging-patient"
 * entry[patient].resource = ImagingPatient-Example
 
-* entry[visit].fullUrl = "http://goodhealth.org/fhir/Encounter/example-imaging-visit"
 * entry[visit].resource = ImagingVisit-Example
 
-* entry[imagingServiceRequest].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-service-request"
 * entry[imagingServiceRequest].resource = ImagingServiceRequest-Example
 
-* entry[requestedProcedure].fullUrl = "http://goodhealth.org/fhir/ServiceRequest/example-imaging-requested-procedure"
 * entry[requestedProcedure].resource = ImagingRequestedProcedure-Example
 
-* entry[scheduledProcedureStep].fullUrl = "http://goodhealth.org/fhir/Task/example-imaging-procedure-step"
 * entry[scheduledProcedureStep].resource = ImagingProcedureStep-Example
 
-* entry[imagingStudy].fullUrl = "http://goodhealth.org/fhir/ImagingStudy/example-requested-procedure-imaging-study"
 * entry[imagingStudy].resource = ImagingStudyRequestedProcedure-Example
 
-* entry[scheduledStation].fullUrl = "http://goodhealth.org/fhir/Device/example-scheduled-station"
 * entry[scheduledStation].resource = ScheduledStation-Example
 
 Profile:        RAD3OrderStatusUpdateBundle
