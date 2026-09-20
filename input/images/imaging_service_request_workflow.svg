@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="730" viewBox="0 0 1100 730" role="img" aria-labelledby="title desc">
-  <title id="title">Imaging Service Request workflow excluding MPPS</title>
-  <desc id="desc">The EHR invokes create-order on the RIS. The RIS owns the FHIR resources. A Modality Worklist Manager translates DICOM worklist queries into FHIR queries to the RIS and translates the results back into DICOM responses.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" viewBox="0 0 1100 760" role="img" aria-labelledby="title desc">
+  <title id="title">Imaging Service Request workflow</title>
+  <desc id="desc">The EHR invokes create-order on the RIS. The RIS owns the FHIR resources. A Modality Worklist Manager translates DICOM worklist queries into FHIR queries to the RIS, translates the results back into DICOM responses, and updates FHIR resources in response to MPPS messages.</desc>
   <style>
     text{font-family:sans-serif;fill:#222}.title{font-size:23px;font-weight:bold}.actor,.group-title{font-size:15px;font-weight:bold}.label{font-size:14px}.note{font-size:13px}.box{fill:#dce8f3;stroke:#66829b}.group{fill:#f4f7fb;stroke:#8aa3bd}.life{stroke:#555}.msg{stroke:#1f5f8b;stroke-width:1.5;marker-end:url(#a)}.ret{stroke:#50805d;stroke-width:1.5;stroke-dasharray:6 4;marker-end:url(#g)}
   </style>
   <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 8,4 0,8z" fill="#1f5f8b"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 8,4 0,8z" fill="#50805d"/></marker></defs>
-  <text x="550" y="30" text-anchor="middle" class="title">Imaging Service Request workflow (excluding MPPS)</text>
+  <text x="550" y="30" text-anchor="middle" class="title">Imaging Service Request workflow</text>
   <g class="box"><rect x="15" y="50" width="205" height="52"/><rect x="235" y="50" width="205" height="52"/><rect x="455" y="50" width="205" height="52"/><rect x="675" y="50" width="205" height="52"/><rect x="895" y="50" width="190" height="52"/></g>
   <text x="117" y="73" text-anchor="middle" class="actor">EHR / EMR</text><text x="117" y="92" text-anchor="middle" class="label">(Order Placer)</text>
   <text x="337" y="73" text-anchor="middle" class="actor">RIS</text><text x="337" y="92" text-anchor="middle" class="label">(DSS / Order Filler)</text>
   <text x="557" y="73" text-anchor="middle" class="actor">Modality Worklist</text><text x="557" y="92" text-anchor="middle" class="label">Manager</text>
   <text x="777" y="73" text-anchor="middle" class="actor">Modality</text><text x="777" y="92" text-anchor="middle" class="label">(Acquisition)</text>
   <text x="990" y="73" text-anchor="middle" class="actor">Image Archive</text><text x="990" y="92" text-anchor="middle" class="label">/ Image Manager</text>
-  <path d="M117 102V700 M337 102V700 M557 102V700 M777 102V700 M990 102V700" class="life"/>
+  <path d="M117 102V735 M337 102V735 M557 102V735 M777 102V735 M990 102V735" class="life"/>
   <rect x="10" y="120" width="1080" height="180" class="group"/><text x="25" y="143" class="group-title">Use case 1: Create an imaging order (RAD-2)</text>
   <line x1="117" y1="175" x2="337" y2="175" class="msg"/><text x="227" y="168" text-anchor="middle" class="label">$create-order (RAD-2 request bundle)</text>
   <text x="352" y="201" class="note">Bundle contains:</text><text x="352" y="219" class="note">ImagingServiceRequest (no Filler Order Number)</text><text x="352" y="237" class="note">RequestedProcedure; Patient / optional Encounter</text><text x="352" y="255" class="note">optional requester and performing Organization</text>
@@ -26,10 +26,11 @@
   <line x1="337" y1="480" x2="557" y2="480" class="ret"/><text x="447" y="473" text-anchor="middle" class="label">Matching FHIR resources</text>
   <path d="M557 485 C610 485,610 465,557 465" fill="none" class="msg"/><text x="572" y="493" class="label">Transform FHIR results into DICOM attributes</text>
   <line x1="557" y1="495" x2="777" y2="495" class="ret"/><text x="667" y="488" text-anchor="middle" class="label">DICOM C-FIND-RSP (MWL entry)</text>
-  <rect x="10" y="510" width="1080" height="80" class="group"/><text x="25" y="533" class="group-title">Use case 3: Reconcile acquired images and performed work</text>
+  <rect x="10" y="510" width="1080" height="115" class="group"/><text x="25" y="533" class="group-title">Use case 3: Reconcile acquired images and performed work</text>
   <line x1="777" y1="560" x2="990" y2="560" class="msg"/><text x="883" y="553" text-anchor="middle" class="label">DICOM study (images)</text>
-  <line x1="777" y1="580" x2="337" y2="580" class="msg"/><text x="557" y="573" text-anchor="middle" class="label">Completion / status information</text>
-  <rect x="10" y="605" width="1080" height="95" class="group"/><text x="25" y="628" class="group-title">Use case 4: Communicate order status (RAD-3 / RAD-4)</text>
-  <line x1="337" y1="660" x2="117" y2="660" class="ret"/><text x="227" y="653" text-anchor="middle" class="label">RAD3OrderStatusUpdateBundle</text>
-  <line x1="337" y1="685" x2="990" y2="685" class="msg"/><text x="663" y="678" text-anchor="middle" class="label">Procedure / study reconciliation</text>
+  <line x1="777" y1="580" x2="557" y2="580" class="msg"/><text x="667" y="573" text-anchor="middle" class="label">DICOM MPPS (N-CREATE / N-SET)</text>
+  <line x1="557" y1="600" x2="337" y2="600" class="msg"/><text x="447" y="593" text-anchor="middle" class="label">Update performed-work FHIR resources</text>
+  <rect x="10" y="640" width="1080" height="95" class="group"/><text x="25" y="663" class="group-title">Use case 4: Communicate order status (RAD-3 / RAD-4)</text>
+  <line x1="337" y1="690" x2="117" y2="690" class="ret"/><text x="227" y="683" text-anchor="middle" class="label">RAD3OrderStatusUpdateBundle</text>
+  <line x1="337" y1="715" x2="990" y2="715" class="msg"/><text x="663" y="708" text-anchor="middle" class="label">Procedure / study reconciliation</text>
 </svg>

@@ -187,40 +187,40 @@ Usage:          #definition
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #RequestingPhysicianIdentificationSequence
       * display = "Requesting Physician Identification Sequence (0032,1031)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #ReferringPhysicianName
       * display = "Referring Physician's Name (0008,0090)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole   
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #ReferringPhysicianIdentificationSequence
       * display = "Referring Physician Identification Sequence (0008,0096)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #RequestingService
       * display = "Requesting Service (0032,1033)"
@@ -323,6 +323,16 @@ Usage:          #definition
       * code = #ScheduledProcedureStep
       * display = "Scheduled Procedure Step"
       * relationship = #equivalent
+  * element[+]
+    * code = #imaging-procedure-step.identifier[scheduledProcedureStepId]
+    * target[+]
+      * code = #ScheduledProcedureStepID
+      * display = "Scheduled Procedure Step ID (0040,0009)"
+      * relationship = #equivalent
+      * comment = "The identifier used by MPPS to correlate the performed step with the existing imaging procedure step Task"
+      * dependsOn
+        * attribute = #SystemType
+        * valueString = "urn:dicom:scheduled-procedure-step-id"
   * element[+]
     * code = #imaging-scheduled-procedure-step.code.text
     * target[+]

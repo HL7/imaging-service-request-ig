@@ -13,7 +13,7 @@ Usage:          #definition
 * extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * extension[0].valueCode = #ii
 
-* additionalAttribute[0]
+* additionalAttribute[1]
   * code = #ResourceType
   * description = "FHIR Resource Reference Type"
   * uri = "http://hl7.org/fhir/ValueSet/resource-types"
@@ -41,7 +41,7 @@ Usage:          #definition
     * display = "ImagingServiceRequest.requester"
     * dependsOn[0]
       * attribute = #ResourceType
-      * valueCode = #Practictioner
+      * valueCode = #Practitioner
   * target[1]
     * relationship = #equivalent
     * code = #requester
@@ -62,7 +62,7 @@ Usage:          #definition
     * display = "ImagingServiceRequest.requester"
     * dependsOn[0]
       * attribute = #ResourceType
-      * valueCode = #Practictioner
+      * valueCode = #Practitioner
   * target[1]
     * relationship = #equivalent
     * code = #requester
@@ -84,7 +84,7 @@ Usage:          #definition
     * display = "ImagingServiceRequest.requester"
     * dependsOn[0]
       * attribute = #ResourceType
-      * valueCode = #Practictioner
+      * valueCode = #Practitioner
   * target[1]
     * relationship = #equivalent
     * code = #requester
@@ -105,7 +105,7 @@ Usage:          #definition
     * display = "ImagingServiceRequest.requester"
     * dependsOn[0]
       * attribute = #ResourceType
-      * valueCode = #Practictioner
+      * valueCode = #Practitioner
   * target[1]
     * relationship = #equivalent
     * code = #requester

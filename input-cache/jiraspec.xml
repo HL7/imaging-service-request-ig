@@ -5,17 +5,32 @@
   <artifactPageExtension value="-definitions"/>
   <!-- <artifactPageExtension value="-examples"/> -->
   <artifactPageExtension value="-mappings"/>
-  <artifact id="ConceptMap/FHIRToDICOMImagingServiceRequest" key="ConceptMap-ImagingServiceRequest" name="ConceptMap - Populating DICOM Imaging Service Request from FHIR"/>
-  <artifact id="ConceptMap/FHIRToDICOMPatient" key="ConceptMap-Patient" name="ConceptMap - Populating DICOM Patient from FHIR"/>
-  <artifact id="ConceptMap/FHIRToDICOMRequestedProcedure" key="ConceptMap-RequestedProcedure" name="ConceptMap - Populating DICOM Requested Procedure from FHIR"/>
-  <artifact id="ConceptMap/FHIRToDICOMScheduledProcedureStep" key="ConceptMap-ScheduledProcedureStep" name="ConceptMap - Populating Scheduled Procedure Step from FHIR"/>
-  <artifact id="ConceptMap/FHIRToDICOMVisit" key="ConceptMap-Visit" name="ConceptMap - Populating DICOM Visit from FHIR"/>
-  <artifact id="StructureDefinition/ScheduledStation" key="Device-ScheduledStation" name="Device - DICOM Scheduled Station Mapping"/>
-  <artifact id="StructureDefinition/ImagingVisit" key="Encounter-Visit" name="Encounter - DICOM MWL Visit Mapping"/>
-  <artifact id="StructureDefinition/ImagingPatient" key="Patient" name="Patient - DICOM MWL Patient Mapping"/>
-  <artifact id="StructureDefinition/ImagingServiceRequest" key="ServiceRequest-ImagingServiceRequest" name="ServiceRequest - DICOM MWL Imaging Service Request Mapping"/>
-  <artifact id="StructureDefinition/ImagingRequestedProcedure" key="ServiceRequest-ImagingRequestedProcedure" name="ServiceRequest - DICOM MWL Requested Procedure Mapping"/>
-  <artifact id="StructureDefinition/ImagingScheduledProcedureStep" key="Task-ImagingScheduledProcedureStep" name="Task - DICOM MWL Scheduled Procedure Step Mapping"/>
+  <artifact id="CapabilityStatement/RisCapabilityStatement" key="CapabilityStatement-RIS" name="RIS CapabilityStatement"/>
+  <artifact id="CapabilityStatement/MwlManagerCapabilityStatement" key="CapabilityStatement-MWLManager" name="Modality Worklist Manager CapabilityStatement"/>
+  <artifact id="OperationDefinition/CreateOrderOperation" key="CreateOrderOperation" name="OperationDefinition - Create Order"/>
+  <artifact id="OperationDefinition/CancelOrderOperation" key="CancelOrderOperation" name="OperationDefinition - Cancel Order"/>
+  <artifact id="StructureDefinition/create-order-request-bundle" key="CreateOrderRequestBundle" name="Bundle - Create Order Request"/>
+  <artifact id="StructureDefinition/rad2-imaging-service-request" key="RAD2ImagingServiceRequestProfile" name="ServiceRequest - RAD-2 Imaging Service Request"/>
+  <artifact id="StructureDefinition/order-bundle" key="OrderBundle" name="Bundle - Order Result"/>
+  <artifact id="StructureDefinition/rad3-order-status-update-bundle" key="RAD3OrderStatusUpdateBundle" name="Bundle - RAD-3 Order Status Update"/>
+  <artifact id="StructureDefinition/imaging-service-request" key="ImagingServiceRequestProfile" name="ServiceRequest - DICOM MWL Imaging Service Request Mapping"/>
+  <artifact id="StructureDefinition/imaging-requested-procedure" key="ImagingRequestedProcedureProfile" name="ServiceRequest - DICOM MWL Requested Procedure Mapping"/>
+  <artifact id="StructureDefinition/imaging-procedure-step" key="ImagingProcedureStepProfile" name="Task - Imaging Procedure Step"/>
+  <artifact id="StructureDefinition/imaging-procedure" key="ImagingProcedureProfile" name="Procedure - Imaging Procedure Mapping"/>
+  <artifact id="StructureDefinition/requested-procedure-imaging-study" key="ImagingStudyRequestedProcedureProfile" name="ImagingStudy - DICOM MWL Study Instance Mapping"/>
+  <artifact id="StructureDefinition/scheduled-station" key="ScheduledStationProfile" name="Device - DICOM Scheduled Station Mapping"/>
+  <artifact id="StructureDefinition/imaging-visit" key="ImagingVisitProfile" name="Encounter - DICOM MWL Visit Mapping"/>
+  <artifact id="StructureDefinition/imaging-patient" key="ImagingPatientProfile" name="Patient - DICOM MWL Patient Mapping"/>
+  <artifact id="StructureDefinition/imaging-practitioner" key="ImagingPractitionerProfile" name="Practitioner - DICOM MWL Referring / Requesting Physician Mapping"/>
+  <artifact id="StructureDefinition/imaging-organization" key="ImagingOrganizationProfile" name="Organization - DICOM MWL Requesting Service / Entering Organization Mapping"/>
+  <artifact id="ValueSet/imaging-service-request-status" key="ImagingServiceRequestStatusVS" name="ValueSet - Imaging Service Request Status"/>
+  <artifact id="ValueSet/imaging-procedure-step-intent" key="ImagingProcedureStepIntentVS" name="ValueSet - Imaging Procedure Step Intent"/>
+  <artifact id="ConceptMap/FHIR-to-DICOM-Imaging-Service-Request" key="ConceptMap-ImagingServiceRequest" name="ConceptMap - Populating DICOM Imaging Service Request from FHIR"/>
+  <artifact id="ConceptMap/HL7V2-ORM-to-FHIR" key="ConceptMap-HL7v2-ORM" name="ConceptMap - Populating FHIR Resources from HL7 v2.3.1 ORM/OMG Order Messages"/>
+  <artifact id="ConceptMap/FHIR-to-DICOM-Requested-Procedure" key="ConceptMap-RequestedProcedure" name="ConceptMap - Populating DICOM Requested Procedure from FHIR"/>
+  <artifact id="ConceptMap/DICOM-Modality-Worklist-From-FHIR" key="ConceptMap-MWLEntry" name="ConceptMap - Populating DICOM Modality Worklist C-FIND Response from FHIR"/>
+  <artifact id="ConceptMap/FHIR-to-DICOM-Practitioner" key="ConceptMap-Practitioner" name="ConceptMap - Populating DICOM Referring / Requesting Physician from FHIR"/>
+  <artifact id="ConceptMap/FHIR-to-DICOM-Organization" key="ConceptMap-Organization" name="ConceptMap - Populating DICOM Requesting Service / Entering Organization from FHIR"/>
   <page key="NA" name="(NA)"/>
   <page key="many" name="(many)"/>
   <page key="architecture" name="Architecture"/>

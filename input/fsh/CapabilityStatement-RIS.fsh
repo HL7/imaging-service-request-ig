@@ -2,7 +2,7 @@ Instance: RisCapabilityStatement
 InstanceOf: CapabilityStatement
 Usage: #definition
 Description: "The CapabilityStatement of the RIS interface to the MWL"
-* url = "http://RIS"
+* url = "http://hl7.org/fhir/uv/imaging-service-request-ig/CapabilityStatement/RisCapabilityStatement"
 * version = "0.0.1"
 * title = "RIS CapabilityStatement"
 * name = "RIS CapabilityStatement"
@@ -30,11 +30,13 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
       * documentation = "Cancels a MWL entry based on a provided ImagingServiceRequest and RequestedProcedureServiceRequests"
   * resource[+]
     * type = #Task
-    * profile = Canonical( ImagingScheduledProcedureStepProfile )
+    * profile = Canonical( ImagingProcedureStepProfile )
     * interaction[+]
       * code = #read
     * interaction[+]
       * code = #search-type
+    * interaction[+]
+      * code = #update
   * resource[+]
     * type = #Patient
     * profile = Canonical(  ImagingPatientProfile )
@@ -77,6 +79,8 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
       * code = #read
     * interaction[+]
       * code = #search-type
+    * interaction[+]
+      * code = #update
   * resource[+]
     * type = #Procedure
     * profile = Canonical( ImagingProcedureProfile )
@@ -84,6 +88,8 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
       * code = #read
     * interaction[+]
       * code = #search-type
+    * interaction[+]
+      * code = #update
 
 Instance: CreateOrderOperation
 InstanceOf: OperationDefinition
