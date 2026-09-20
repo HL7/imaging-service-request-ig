@@ -92,13 +92,13 @@ This operation creates a new order based on the included Bundle.
   * type = #Bundle
   * targetProfile = Canonical( CreateOrderRequestBundle )
 * parameter[+]
-  * name = #return
+  * name = #outcome
   * use = #out
   * scope = #system
-  * min = 1
-  * max = "*"
-  * type = #Bundle
-  * targetProfile = Canonical( OrderBundle )
+  * min = 0
+  * max = "1"
+  * type = #OperationOutcome
+  * targetProfile = Canonical( OperationOutcome )
 
 Instance: CancelOrderOperation
 InstanceOf: OperationDefinition

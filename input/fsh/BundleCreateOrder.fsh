@@ -83,7 +83,7 @@ Profile:        OrderBundle
 Parent:         Bundle
 Id:             order-bundle
 Title:          "Bundle - Order Result"
-Description:    "Bundle returned as the `return` output parameter of the $create-order operation, and as the `bundle` output parameter of the $cancel-order operation. Represents the resulting MWL entry/entries (Task/ScheduledProcedureStep) created, updated, or cancelled, along with the resources needed to resolve the full reference chain (RAD-2/RAD-3 New Order, Status Update, and Order Cancelled semantics)."
+Description:    "RIS-owned bundle containing a resulting MWL entry/entries (Task/ScheduledProcedureStep) and the resources needed to resolve the full reference chain. It is used as the basis for status and order exchange profiles; it is not returned by the RAD-2 `$create-order` operation."
 
 * ^abstract = false
 * type = #collection
@@ -126,7 +126,7 @@ Description:    "Bundle returned as the `return` output parameter of the $create
 Instance: OrderBundle-Example
 InstanceOf: OrderBundle
 Usage: #example
-Description: "An example order result Bundle returned by $create-order, containing the resulting MWL entry and its resolvable reference chain."
+Description: "An example RIS-owned order bundle containing the resulting MWL entry and its resolvable reference chain."
 
 * id = "example-order-bundle"
 * type = #collection
@@ -151,3 +151,12 @@ Description: "An example order result Bundle returned by $create-order, containi
 
 * entry[scheduledStation].fullUrl = "http://goodhealth.org/fhir/Device/example-scheduled-station"
 * entry[scheduledStation].resource = ScheduledStation-Example
+
+Profile:        RAD3OrderStatusUpdateBundle
+Parent:         OrderBundle
+Id:             rad3-order-status-update-bundle
+Title:          "Bundle - RAD-3 Order Status Update"
+Description:    "Bundle sent by the RIS / DSS / Order Filler to the EHR / EMR Order Placer to communicate a RAD-3 order status update. It contains the current RIS-owned ImagingServiceRequest and associated resources needed by the Order Placer to reconcile the order."
+
+* ^abstract = false
+* entry[imagingServiceRequest] 1..1

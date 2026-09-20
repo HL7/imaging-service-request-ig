@@ -1,30 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
   <title id="title">Imaging Service Request workflow excluding MPPS</title>
-  <desc id="desc">Sequence diagram showing the EHR or EMR invoking the RAD-2 create-order operation on the RIS, followed by modality worklist query, acquisition, reconciliation, and status communication.</desc>
+  <desc id="desc">The EHR invokes create-order on the RIS. The RIS creates and owns the FHIR resources, serves modality worklist, and later sends a RAD-3 status update bundle to the EHR.</desc>
   <style>
-    .title{font:bold 23px sans-serif;fill:#222}.actor{font:bold 15px sans-serif;fill:#222}.label{font:14px sans-serif;fill:#222}.note{font:13px sans-serif;fill:#333}.group{fill:#f4f7fb;stroke:#8aa3bd}.head{fill:#dce8f3;stroke:#66829b}.line{stroke:#555}.msg{stroke:#1f5f8b;stroke-width:1.5;marker-end:url(#a)}.ret{stroke:#50805d;stroke-width:1.5;stroke-dasharray:6 4;marker-end:url(#g)}
+    text{font-family:sans-serif;fill:#222}.title{font-size:23px;font-weight:bold}.actor,.group-title{font-size:15px;font-weight:bold}.label{font-size:14px}.note{font-size:13px}.box{fill:#dce8f3;stroke:#66829b}.group{fill:#f4f7fb;stroke:#8aa3bd}.life{stroke:#555}.msg{stroke:#1f5f8b;stroke-width:1.5;marker-end:url(#a)}.ret{stroke:#50805d;stroke-width:1.5;stroke-dasharray:6 4;marker-end:url(#g)}
   </style>
   <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 8,4 0,8z" fill="#1f5f8b"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 8,4 0,8z" fill="#50805d"/></marker></defs>
   <text x="500" y="30" text-anchor="middle" class="title">Imaging Service Request workflow (excluding MPPS)</text>
-  <g class="head"><rect x="25" y="50" width="220" height="52"/><rect x="270" y="50" width="220" height="52"/><rect x="515" y="50" width="220" height="52"/><rect x="760" y="50" width="215" height="52"/></g>
+  <g class="box"><rect x="25" y="50" width="220" height="52"/><rect x="270" y="50" width="220" height="52"/><rect x="515" y="50" width="220" height="52"/><rect x="760" y="50" width="215" height="52"/></g>
   <text x="135" y="73" text-anchor="middle" class="actor">EHR / EMR</text><text x="135" y="92" text-anchor="middle" class="label">(Order Placer)</text>
   <text x="380" y="73" text-anchor="middle" class="actor">RIS</text><text x="380" y="92" text-anchor="middle" class="label">(DSS / Order Filler)</text>
   <text x="625" y="73" text-anchor="middle" class="actor">Modality</text><text x="625" y="92" text-anchor="middle" class="label">(Acquisition Modality)</text>
   <text x="867" y="73" text-anchor="middle" class="actor">Image Archive</text><text x="867" y="92" text-anchor="middle" class="label">/ Image Manager</text>
-  <path d="M135 102V650 M380 102V650 M625 102V650 M867 102V650" class="line"/>
-  <rect x="15" y="120" width="960" height="145" class="group"/><text x="30" y="143" class="actor">RAD-2: create order</text>
-  <line x1="135" y1="170" x2="380" y2="170" class="msg"/><text x="257" y="163" text-anchor="middle" class="label">Create imaging order</text>
-  <line x1="135" y1="205" x2="380" y2="205" class="msg"/><text x="257" y="198" text-anchor="middle" class="label">$create-order (RAD-2 request bundle)</text>
-  <text x="395" y="180" class="note">RIS owns and stores the FHIR resources:</text><text x="395" y="198" class="note">ImagingServiceRequest, RequestedProcedure, Patient / Encounter</text>
-  <line x1="380" y1="235" x2="135" y2="235" class="ret"/><text x="257" y="229" text-anchor="middle" class="label">OrderBundle with scheduled Task</text>
-  <rect x="15" y="280" width="960" height="155" class="group"/><text x="30" y="303" class="actor">RAD-5: query modality worklist</text>
-  <line x1="625" y1="330" x2="380" y2="330" class="msg"/><text x="502" y="323" text-anchor="middle" class="label">DICOM C-FIND (MWL query)</text>
-  <text x="395" y="355" class="note">Resolve Task -&gt; RequestedProcedure -&gt;</text><text x="395" y="373" class="note">ImagingServiceRequest / Patient / Device / Study</text>
-  <line x1="380" y1="405" x2="625" y2="405" class="ret"/><text x="502" y="399" text-anchor="middle" class="label">DICOM C-FIND-RSP (MWL entry)</text>
-  <rect x="15" y="450" width="960" height="90" class="group"/><text x="30" y="473" class="actor">Acquisition and reconciliation</text>
-  <line x1="625" y1="500" x2="867" y2="500" class="msg"/><text x="746" y="493" text-anchor="middle" class="label">DICOM study (images)</text>
-  <line x1="625" y1="525" x2="380" y2="525" class="msg"/><text x="502" y="518" text-anchor="middle" class="label">Completion / status information</text>
-  <rect x="15" y="555" width="960" height="80" class="group"/><text x="30" y="578" class="actor">RAD-3 / RAD-4 status communication</text>
-  <line x1="380" y1="610" x2="135" y2="610" class="ret"/><text x="257" y="603" text-anchor="middle" class="label">Updated order status</text>
-  <line x1="380" y1="635" x2="867" y2="635" class="msg"/><text x="623" y="628" text-anchor="middle" class="label">Procedure / study reconciliation</text>
+  <path d="M135 102V605 M380 102V605 M625 102V605 M867 102V605" class="life"/>
+  <rect x="15" y="120" width="960" height="145" class="group"/><text x="30" y="143" class="group-title">RAD-2: create order</text>
+  <line x1="135" y1="180" x2="380" y2="180" class="msg"/><text x="257" y="173" text-anchor="middle" class="label">$create-order (RAD-2 CreateOrderRequestBundle)</text>
+  <text x="395" y="207" class="note">RIS creates and owns:</text><text x="395" y="225" class="note">ImagingServiceRequest, RequestedProcedure, Patient / Encounter</text>
+  <text x="395" y="246" class="note">No OrderBundle is returned at this stage; the request is acknowledged.</text>
+  <rect x="15" y="280" width="960" height="135" class="group"/><text x="30" y="303" class="group-title">RAD-5: query modality worklist</text>
+  <line x1="625" y1="335" x2="380" y2="335" class="msg"/><text x="502" y="328" text-anchor="middle" class="label">DICOM C-FIND (MWL query)</text>
+  <text x="395" y="360" class="note">RIS resolves Task -&gt; RequestedProcedure -&gt;</text><text x="395" y="378" class="note">ImagingServiceRequest / Patient / Device / ImagingStudy</text>
+  <line x1="380" y1="395" x2="625" y2="395" class="ret"/><text x="502" y="388" text-anchor="middle" class="label">DICOM C-FIND-RSP (MWL entry)</text>
+  <rect x="15" y="430" width="960" height="80" class="group"/><text x="30" y="453" class="group-title">Acquisition and reconciliation</text>
+  <line x1="625" y1="480" x2="867" y2="480" class="msg"/><text x="746" y="473" text-anchor="middle" class="label">DICOM study (images)</text>
+  <line x1="625" y1="500" x2="380" y2="500" class="msg"/><text x="502" y="493" text-anchor="middle" class="label">Completion / status information</text>
+  <rect x="15" y="525" width="960" height="95" class="group"/><text x="30" y="548" class="group-title">RAD-3 / RAD-4 status communication</text>
+  <line x1="380" y1="580" x2="135" y2="580" class="ret"/><text x="257" y="573" text-anchor="middle" class="label">RAD3OrderStatusUpdateBundle</text>
+  <line x1="380" y1="605" x2="867" y2="605" class="msg"/><text x="623" y="598" text-anchor="middle" class="label">Procedure / study reconciliation</text>
 </svg>
