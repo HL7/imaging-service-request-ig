@@ -5,6 +5,7 @@ autonumber
 
 actor "EHR / EMR\n(Order Placer)" as ehr
 participant "RIS\n(DSS / Order Filler)" as ris
+participant "Modality Worklist\nManager" as mwl
 participant "Modality\n(Acquisition Modality)" as modality
 participant "Image archive /\nImage Manager" as archive
 
@@ -27,10 +28,11 @@ group Use case 1: Create an imaging order (RAD-2)
 end
 
 group Use case 2: Populate and query the modality worklist (RAD-5)
-  modality -> ris: DICOM C-FIND\n(MWL query parameters)
-  ris -> ris: Transform MWL criteria into\nFHIR queries
+  modality -> mwl: DICOM C-FIND\n(MWL query parameters)
+  mwl -> mwl: Transform MWL criteria into\nFHIR queries
+  mwl -> ris: FHIR queries\n(resource search)
   note right of ris
-    FHIR queries resolve:
+    RIS-owned FHIR resources:
     Task (scheduled procedure step)
       -> RequestedProcedure
       -> ImagingServiceRequest
@@ -38,8 +40,9 @@ group Use case 2: Populate and query the modality worklist (RAD-5)
       -> Device (scheduled station)
       -> ImagingStudy (Study Instance UID)
   end note
-  ris -> ris: Transform FHIR query results into\nDICOM MWL attributes
-  ris --> modality: DICOM C-FIND-RSP\n(MWL entry)
+  ris --> mwl: Matching FHIR resources
+  mwl -> mwl: Transform FHIR results into\nDICOM MWL attributes
+  mwl --> modality: DICOM C-FIND-RSP\n(MWL entry)
 end
 
 group Use case 3: Reconcile acquired images and performed work
@@ -53,8 +56,10 @@ group Use case 4: Communicate order status (RAD-3 / RAD-4)
   ris -> archive: Procedure/study reconciliation\n(RAD-4 / RAD-13)
 end
 
-note over modality,ris
-  The RIS owns the FHIR resources and provides the MWL service.
+note over mwl,ris
+  The RIS owns the FHIR resources. The Modality Worklist Manager
+  provides the DICOM MWL service and may be grouped with the RIS
+  or Image Archive / Image Manager.
   The completion transaction and the mechanism used to update the EHR
   are not specified as a single end-to-end workflow.
 end note

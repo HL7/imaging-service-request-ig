@@ -22,6 +22,8 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
     * type = #ServiceRequest
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
     * operation[+]
       * name = #cancel-order
       * definition = Canonical( CancelOrderOperation )
@@ -31,41 +33,57 @@ Description: "The CapabilityStatement of the RIS interface to the MWL"
     * profile = Canonical( ImagingScheduledProcedureStepProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Patient
     * profile = Canonical(  ImagingPatientProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Encounter
     * profile = Canonical( ImagingVisitProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Device
     * profile = Canonical(ScheduledStationProfile)
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Practitioner
     * profile = Canonical( ImagingPractitionerProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Organization
     * profile = Canonical( ImagingOrganizationProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #ImagingStudy
     * profile = Canonical( ImagingStudyRequestedProcedureProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
   * resource[+]
     * type = #Procedure
     * profile = Canonical( ImagingProcedureProfile )
     * interaction[+]
       * code = #read
+    * interaction[+]
+      * code = #search-type
 
 Instance: CreateOrderOperation
 InstanceOf: OperationDefinition

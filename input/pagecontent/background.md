@@ -1,7 +1,7 @@
 This chapter describes the scope of this guide, provides background information, key concepts,
 and describes the use cases supported by this implementation guide.
 
-1. [Problem](problem) - Description of the Problem
+1. [Problem](#problem) - Description of the Problem
 2. [Scope](#scope) - Scope of the IG
 3. [Intended Readers](#readers) - Intended readers of the IG
 4. [Relationship to IHE Scheduled Workflow](#ihe-scheduled-workflow) - Relationship to IHE Radiology Scheduled Workflow Profile
@@ -21,7 +21,7 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
 
 * Resource profiles
   * Imaging Service Request as ServiceRequest
-  * Requested Procedure as either a ServiceRequest
+  * Requested Procedure as a ServiceRequest
   * Scheduled Procedure Step as Task
   * Performed Procedure Step as Task (profile available; MPPS workflow is excluded from the diagram)
 * Content maps
@@ -30,13 +30,16 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
 
 #### Out of Scope
 
-* Modelling entire image ordering workflow
+* Modeling entire image ordering workflow
 
 ### Intended Readers<a name="readers"></a>
 
 This Implementation Guide is intended for
 
-*To be created*
+* EHR / EMR vendors and implementers who want to submit imaging orders to a RIS / DSS / Order Filler using FHIR
+* RIS / DSS / Order Filler vendors and implementers who want to receive imaging orders from an EHR / EMR using FHIR and own the resulting FHIR resources
+* Modality Worklist Manager vendors and implementers who want to expose a DICOM MWL service and query RIS-owned FHIR resources on behalf of acquisition modalities
+* Modality vendors and implementers who want to query a DICOM MWL service for scheduled procedures
 
 ### Relationship to IHE Scheduled Workflow<a name="ihe-scheduled-workflow"></a>
 
@@ -46,6 +49,8 @@ The actors shown in the workflow are:
 
 * EHR / EMR (Order Placer)
 * RIS (DSS / Order Filler)
+* Modality Worklist Manager
+  * May be grouped with the RIS or the Image Archive / Image Manager
 * Modality (Acquisition Modality)
 * Image Archive / Image Manager
 
@@ -67,7 +72,7 @@ not define an operation for every SWF transaction.
 * Order message content is relatively sparse
 * Messages:
   * New Order From Order Placer
-  * Order Cancelled by Order Placer
+  * Order Canceled by Order Placer
 
 ##### Filler Order Management \[RAD-3\]
 
@@ -76,7 +81,7 @@ not define an operation for every SWF transaction.
 * Messages:
   * New Order From Order Filler or Change Order Form
   * Order Status Update
-  * Order Cancelled By the Order Filler
+  * Order Canceled By the Order Filler
 
 ##### Procedure Scheduled \[RAD-4\] / Procedure Updated \[RAD-13\]
 
@@ -85,7 +90,7 @@ not define an operation for every SWF transaction.
 
 ##### Query Modality Worklist \[RAD-5\]
 
-* Acquisition Modality queries DSS / Order Filler for worklist entries
+* Acquisition Modality queries the Modality Worklist Manager for worklist entries
 * Used to populate the modality worklist
 
 ### Mapping to FHIR Operations
@@ -114,7 +119,7 @@ The following SWF transactions are not modeled as FHIR operations:
   * The mechanism by which it does so is out of scope
 * Modality Worklist Query
   * Modality Worklist Query remains a DICOM operation
-  * The RIS retrieves its owned FHIR resources to produce the DICOM C-FIND-RSP
+  * The Modality Worklist Manager transforms the DICOM query into FHIR queries against RIS-owned resources and transforms the results into the DICOM C-FIND-RSP
 * Modality acquisition completion and performed-work reconciliation
   * The modality-to-RIS completion mechanism is implementation-dependent
   * The RIS may update `ImagingStudy`, `Procedure`, and performed-procedure-step resources
@@ -153,12 +158,14 @@ not returned at this stage.
 
 #### Use case 2: Populate and query the modality worklist
 
-1. The modality issues a DICOM C-FIND query to the RIS. The RIS transforms the
-   DICOM matching and return-key criteria into a set of FHIR queries against
-   its owned resources.
-2. The RIS resolves the scheduled `Task` and its references to the requested
-   procedure, `ImagingServiceRequest`, patient, encounter, scheduled station,
-   and `ImagingStudy`. It transforms the matching FHIR resources into the
+1. The modality issues a DICOM C-FIND query to the Modality Worklist Manager.
+   The Modality Worklist Manager transforms the DICOM matching and return-key
+   criteria into a set of FHIR queries against resources owned by the RIS.
+2. The Modality Worklist Manager sends those FHIR queries to the RIS. The RIS
+   resolves the scheduled `Task` and its references to the requested procedure,
+   `ImagingServiceRequest`, patient, encounter, scheduled station, and
+   `ImagingStudy`, and returns the matching FHIR resources.
+3. The Modality Worklist Manager transforms the FHIR resources into the
    corresponding DICOM C-FIND-RSP worklist entry and returns it to the
    modality.
 
@@ -179,26 +186,48 @@ Manager for RAD-4 / RAD-13 integration.
 
 ### Glossary<a name="glossary"></a>
 
-The following terms and acronyms are used within the Radiation Dose Summary IG:
+The following terms and acronyms are used within this Implementation Guide:
 
 |Term|Definition|
 |-----|-----------------|
-|ATNA| Audit Trail and Node Authentication |
-|CID| Context Identifier |
+|AE| Application Entity (DICOM) |
+|ACK| Acknowledgement message |
+|C-FIND| DICOM query operation |
+|C-FIND-RSP| DICOM query response |
 |DICOM| Digital Imaging and Communications in Medicine |
+|DSS| Department System Scheduler / Order Filler |
 |EHR| Electronic Health Record |
 |EMR| Electronic Medical Record |
+|ERR| Error segment (HL7 v2) |
 |FHIR| Fast Healthcare Interoperability Resources |
 |HL7| Health Level Seven|
 |IG| Implementation Guide |
 |IHE| Integrating the Healthcare Enterprise |
 |IOD| Information Object Definition |
-|MWL| Modality Worklist
+|MSA| Message Acknowledgment segment (HL7 v2) |
+|MSH| Message Header segment (HL7 v2) |
+|MPPS| Modality Performed Procedure Step |
+|MWL| Modality Worklist |
+|OBR| Observation Request segment (HL7 v2) |
+|OMI| Imaging order message (HL7 v2) |
+|OMG| General clinical order message (HL7 v2) |
+|ORC| Common Order segment (HL7 v2) |
+|ORM| General order message (HL7 v2) |
+|ORG| General acknowledgment message (HL7 v2) |
+|ORR| Order acknowledgment message (HL7 v2) |
+|PACS| Picture Archiving and Communication System |
+|PID| Patient Identification segment (HL7 v2) |
+|RAD| IHE Radiology domain |
 |RIS| Radiology Information System |
-|TLS| Transport Layer Security |
-|UID| Unique identifier |
+|SOP| Service-Object Pair (DICOM) |
+|SWF| Scheduled Workflow |
+|PV1| Patient Visit segment (HL7 v2) |
+|TQ1| Timing/Quantity segment (HL7 v2) |
+|UID| Unique Identifier |
 |URL| Uniform Resource Locator |
 |URN| Uniform Resource Name |
+|C-FIND| DICOM query operation |
+|C-FIND-RSP| DICOM query response |
 
 ### References<a name="references"></a>
 
