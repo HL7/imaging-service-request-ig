@@ -1,0 +1,3 @@
+== Suppressed Messages ==
+# The FHIR DICOM Package is not a standard IG and it fails this validation check
+The canonical URL for an Implementation Guide must point directly to the implementation guide resource, not to the Implementation Guide as a whole

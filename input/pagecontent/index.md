@@ -13,62 +13,12 @@ This IG is organized into three main sections:
   * [Glossary](background.html#glossary) -- Glossary
   * [References](background.html#references) -- References
 * [Chapter II](architecture.html): Architecture & Implementation
-  * [MWL Structure](arhitecture.html#mwl-structure) - Structure of a Modality Worklist Query Response
+  * [DICOM Modality Worklist (MWL) Information Model](architecture.html#mwl-information-model) - DICOM MWL information model and FHIR resource mappings
+  * [Workflow responsibilities](architecture.html#profile-aligned-workflow) - Responsibilities and resource ownership across the order-to-acquisition workflow
+  * [MWL Structure](architecture.html#mwl-structure) - Structure of a Modality Worklist Query Response
+  * [MWL Resource Reference Chain](architecture.html#mwl-reference-chain) - FHIR references used to assemble an MWL entry
+  * [Relationship to the Performed Procedure](architecture.html#mwl-procedure-relationship) - MPPS updates and downstream performed-procedure modeling
 
-
-[comment]: <> (    * [Profiles & Extensions]&#40;architecture.html#profiles&#41; - FHIR Profiles and extensions defined in the IG)
-
-[comment]: <> (      * [Resources]&#40;architecture.html#resources&#41; - FHIR Resource Profiles)
-
-[comment]: <> (        * [Observation]&#40;architcture.html#observation&#41; - Observation)
-
-[comment]: <> (        * [ImagingSelection]&#40;architcture.html#imagingselection&#41; - ImagingSelection)
-
-[comment]: <> (        * [Device]&#40;architcture.html#device&#41; - Device)
-
-[comment]: <> (        * [BodySite]&#40;architcture.html#bodysite&#41; - BodySite)
-
-[comment]: <> (      * [Data Types]&#40;architcture.html#datatypes&#41; - FHIR Data Type Profiles)
-
-[comment]: <> (      * [Extensions]&#40;architecture.html#extensions&#41; - FHIR Extensions)
-
-[comment]: <> (      * [Profile Relationships]&#40;architecture.html#relationships&#41; - Relationships between profiled FHIR resources and other standards)
-
-[comment]: <> (        * [DICOM SR Basics]&#40;architecture.html#dicom-sr&#41; - Overview of DICOM SR and terminology)
-
-[comment]: <> (        * [Relationship to DICOM SR TID 1500 Measurement Report]&#40;architecture.html#tid-1500&#41; - Mapping of content from DICOM SR Measurement Report)
-
-[comment]: <> (          * [Imaging Measurement Group Relationship]&#40;architecture.html#imaging-measurement-group&#41; - Mapping of imaging measurement groups)
-
-[comment]: <> (          * [Derived Imaging Measurements Relationship]&#40;architecture.html#derived-imaging-measurement&#41; - Mapping of derived imaging measurements)
-
-[comment]: <> (          * [Imaging Qualitative Evaluations Relationship]&#40;architecture.html#imaging-qualitative-evalutation&#41; - Mapping of imaging qualitative evaluations)
-
-[comment]: <> (        * [Device Relationship]&#40;architecture.html#relationship-device&#41; - Mapping of devices from a DICOM SR Measurement Report)
-
-[comment]: <> (    * [Actors]&#40;architecture.html#actors&#41; - Actors participating in the IG)
-
-[comment]: <> (    * [Terminology]&#40;architecture.html#terminology&#41; - Value Sets defined and used)
-
-[comment]: <> (    * [Security Consideration]&#40;architecture.html#sec&#41; - Security aspects to be taken in consideration)
-
-[comment]: <> (* [Chapter III]&#40;mapping.html&#41;: Measurement Report Processing Mapping)
-
-[comment]: <> (    * [DICOM SR Measurement Report Instance Mapping]&#40;mapping.html#sr_instance&#41;)
-
-[comment]: <> (    * [DICOM SR Document Mapping]&#40;mapping.html#sr_document&#41;)
-
-[comment]: <> (    * [Imaging Measurements Container Mapping]&#40;mapping.html#imaging_measurements_container&#41;)
-
-[comment]: <> (    * [Imaging Measurement Group Mapping]&#40;mapping.html#sr_iimaging_measurement_groupnstance&#41;)
-
-[comment]: <> (* [Chapter IV]&#40;testing.html&#41;: Testing & Conformance)
-
-[comment]: <> (    * [Test Plan]&#40;testing.html#testplan&#41; - Test plans for the different actors)
-
-[comment]: <> (    * [Test Data]&#40;testing.html#testdata&#41; - Test data that can be used)
-
-[comment]: <> (    * [Resources Samples]&#40;testing.html#samples&#41; - Samples of resources profiled following this IG)
 
 ### Copyrights and acknowledgments
 
