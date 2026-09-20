@@ -9,14 +9,16 @@ participant "Modality\n(Acquisition Modality)" as modality
 participant "Image archive /\nImage Manager" as archive
 
 group RAD-2: create order
-  ehr -> ris: Create imaging order
   ehr -> ris: $create-order\n(RAD-2 CreateOrderRequestBundle)
   note right of ris
     ServiceRequest (ImagingServiceRequest)
     ServiceRequest (RequestedProcedure)
     Patient / Encounter
   end note
-  ris --> ehr: OrderBundle\n(including Task / scheduled step)
+  note over ris
+    RIS creates and owns the resulting FHIR resources,
+    including the scheduled Task / MWL entry.
+  end note
 end
 
 group RAD-5: query modality worklist
@@ -39,7 +41,7 @@ group Acquisition and reconciliation
 end
 
 group RAD-3 / RAD-4 status communication
-  ris --> ehr: Updated order status\n(RAD-3 / FHIR exchange)
+  ris --> ehr: RAD-3 status update\n(RAD3OrderStatusUpdateBundle)
   ris -> archive: Procedure/study reconciliation\n(RAD-4 / RAD-13)
 end
 

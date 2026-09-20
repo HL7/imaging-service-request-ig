@@ -68,7 +68,9 @@ The actors shown in the workflow are:
 
 The RIS owns the FHIR resources defined by this guide and exposes the
 `$create-order` operation. The EHR / EMR invokes that operation directly on the
-RIS using the RAD-2 request bundle.
+RIS using the RAD-2 request bundle. The operation acknowledges the request;
+the RIS does not return the newly created MWL resources at this stage. A later
+RAD-3 status update is represented by `RAD3OrderStatusUpdateBundle`.
 
 #### Transactions
 
