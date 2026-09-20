@@ -2,7 +2,7 @@ Instance: RisCapabilityStatement
 InstanceOf: CapabilityStatement
 Usage: #definition
 Description: "The CapabilityStatement of the RIS interface to the MWL"
-* url = "http://RIS"
+* url = "http://hl7.org/fhir/uv/imaging-service-request-ig/CapabilityStatement/RisCapabilityStatement"
 * version = "0.0.1"
 * title = "RIS CapabilityStatement"
 * name = "RIS CapabilityStatement"

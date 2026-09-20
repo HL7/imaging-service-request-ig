@@ -2,7 +2,7 @@ Instance: MwlManagerCapabilityStatement
 InstanceOf: CapabilityStatement
 Usage: #definition
 Description: "The CapabilityStatement of the Modality Worklist Manager. The Modality Worklist Manager provides the DICOM MWL C-FIND service, queries RIS-owned FHIR resources, and transforms matching FHIR resources into DICOM C-FIND-RSP responses."
-* url = "http://tbd/CapabilityStatement/mwl-manager"
+* url = "http://hl7.org/fhir/uv/imaging-service-request-ig/CapabilityStatement/MwlManagerCapabilityStatement"
 * version = "0.0.1"
 * title = "Modality Worklist Manager CapabilityStatement"
 * name = "ModalityWorklistManagerCapabilityStatement"

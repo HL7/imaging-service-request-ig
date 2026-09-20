@@ -187,40 +187,40 @@ Usage:          #definition
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #RequestingPhysicianIdentificationSequence
       * display = "Requesting Physician Identification Sequence (0032,1031)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #ReferringPhysicianName
       * display = "Referring Physician's Name (0008,0090)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole   
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #ReferringPhysicianIdentificationSequence
       * display = "Referring Physician Identification Sequence (0008,0096)"
       * relationship = #source-is-broader-than-target
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #Practictioner
+        * valueCode = #Practitioner
       * dependsOn[+]
         * attribute = #ResourceType
-        * valueCode = #PractictionerRole
+        * valueCode = #PractitionerRole
     * target[+]
       * code = #RequestingService
       * display = "Requesting Service (0032,1033)"

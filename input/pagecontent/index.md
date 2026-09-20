@@ -13,11 +13,11 @@ This IG is organized into three main sections:
   * [Glossary](background.html#glossary) -- Glossary
   * [References](background.html#references) -- References
 * [Chapter II](architecture.html): Architecture & Implementation
-  * [DICOM Modality Worklist (MWL) Information Model](architecture.html#mwl-information-model) - DICOM MWL information model and FHIR resource mappings
-  * [Workflow responsibilities](architecture.html#profile-aligned-workflow) - Responsibilities and resource ownership across the order-to-acquisition workflow
-  * [MWL Structure](architecture.html#mwl-structure) - Structure of a Modality Worklist Query Response
-  * [MWL Resource Reference Chain](architecture.html#mwl-reference-chain) - FHIR references used to assemble an MWL entry
-  * [Relationship to the Performed Procedure](architecture.html#mwl-procedure-relationship) - MPPS updates and downstream performed-procedure modeling
+  * [DICOM Modality Worklist (MWL) Information Model](architecture.html#dicom-modality-worklist-mwl-information-model) - DICOM MWL information model and FHIR resource mappings
+  * [Workflow responsibilities](architecture.html#workflow-responsibilities) - Responsibilities and resource ownership across the order-to-acquisition workflow
+  * [MWL Structure](architecture.html#structure-of-a-modality-worklist-query-response) - Structure of a Modality Worklist Query Response
+  * [MWL Resource Reference Chain](architecture.html#mwl-resource-reference-chain) - FHIR references used to assemble an MWL entry
+  * [Relationship to the Performed Procedure](architecture.html#relationship-to-the-performed-procedure) - MPPS updates and downstream performed-procedure modeling
 
 
 ### Copyrights and acknowledgments
