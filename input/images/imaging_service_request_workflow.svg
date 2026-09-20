@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="730" viewBox="0 0 1000 730" role="img" aria-labelledby="title desc">
   <title id="title">Imaging Service Request workflow excluding MPPS</title>
   <desc id="desc">The EHR invokes create-order on the RIS. The RIS creates and owns the FHIR resources, serves modality worklist, and later sends a RAD-3 status update bundle to the EHR.</desc>
   <style>
@@ -11,19 +11,25 @@
   <text x="380" y="73" text-anchor="middle" class="actor">RIS</text><text x="380" y="92" text-anchor="middle" class="label">(DSS / Order Filler)</text>
   <text x="625" y="73" text-anchor="middle" class="actor">Modality</text><text x="625" y="92" text-anchor="middle" class="label">(Acquisition Modality)</text>
   <text x="867" y="73" text-anchor="middle" class="actor">Image Archive</text><text x="867" y="92" text-anchor="middle" class="label">/ Image Manager</text>
-  <path d="M135 102V605 M380 102V605 M625 102V605 M867 102V605" class="life"/>
-  <rect x="15" y="120" width="960" height="145" class="group"/><text x="30" y="143" class="group-title">RAD-2: create order</text>
-  <line x1="135" y1="180" x2="380" y2="180" class="msg"/><text x="257" y="173" text-anchor="middle" class="label">$create-order (RAD-2 CreateOrderRequestBundle)</text>
-  <text x="395" y="207" class="note">RIS creates and owns:</text><text x="395" y="225" class="note">ImagingServiceRequest, RequestedProcedure, Patient / Encounter</text>
-  <text x="395" y="246" class="note">No OrderBundle is returned at this stage; the request is acknowledged.</text>
-  <rect x="15" y="280" width="960" height="135" class="group"/><text x="30" y="303" class="group-title">RAD-5: query modality worklist</text>
-  <line x1="625" y1="335" x2="380" y2="335" class="msg"/><text x="502" y="328" text-anchor="middle" class="label">DICOM C-FIND (MWL query)</text>
-  <text x="395" y="360" class="note">RIS resolves Task -&gt; RequestedProcedure -&gt;</text><text x="395" y="378" class="note">ImagingServiceRequest / Patient / Device / ImagingStudy</text>
-  <line x1="380" y1="395" x2="625" y2="395" class="ret"/><text x="502" y="388" text-anchor="middle" class="label">DICOM C-FIND-RSP (MWL entry)</text>
-  <rect x="15" y="430" width="960" height="80" class="group"/><text x="30" y="453" class="group-title">Acquisition and reconciliation</text>
-  <line x1="625" y1="480" x2="867" y2="480" class="msg"/><text x="746" y="473" text-anchor="middle" class="label">DICOM study (images)</text>
-  <line x1="625" y1="500" x2="380" y2="500" class="msg"/><text x="502" y="493" text-anchor="middle" class="label">Completion / status information</text>
-  <rect x="15" y="525" width="960" height="95" class="group"/><text x="30" y="548" class="group-title">RAD-3 / RAD-4 status communication</text>
-  <line x1="380" y1="580" x2="135" y2="580" class="ret"/><text x="257" y="573" text-anchor="middle" class="label">RAD3OrderStatusUpdateBundle</text>
-  <line x1="380" y1="605" x2="867" y2="605" class="msg"/><text x="623" y="598" text-anchor="middle" class="label">Procedure / study reconciliation</text>
+  <path d="M135 102V700 M380 102V700 M625 102V700 M867 102V700" class="life"/>
+  <rect x="15" y="120" width="960" height="180" class="group"/><text x="30" y="143" class="group-title">Use case 1: Create an imaging order (RAD-2)</text>
+  <line x1="135" y1="175" x2="380" y2="175" class="msg"/><text x="257" y="168" text-anchor="middle" class="label">$create-order (RAD-2 CreateOrderRequestBundle)</text>
+  <text x="395" y="201" class="note">Bundle contains:</text><text x="395" y="219" class="note">RAD-2 ImagingServiceRequest (no Filler Order Number)</text>
+  <text x="395" y="237" class="note">one or more RequestedProcedure; Patient / optional Encounter</text>
+  <text x="395" y="255" class="note">optional requester and performing Organization</text>
+  <path d="M380 265 C445 265,445 285,380 285" fill="none" class="msg"/><text x="395" y="275" class="label">Create and own order/MWL resources</text>
+  <text x="395" y="292" class="note">Task, Device, ImagingStudy, and related resources</text>
+  <line x1="380" y1="300" x2="135" y2="300" class="ret"/><text x="257" y="293" text-anchor="middle" class="label">Acknowledgement (no MWL resources returned)</text>
+  <rect x="15" y="315" width="960" height="180" class="group"/><text x="30" y="338" class="group-title">Use case 2: Populate and query the modality worklist (RAD-5)</text>
+  <line x1="625" y1="365" x2="380" y2="365" class="msg"/><text x="502" y="358" text-anchor="middle" class="label">DICOM C-FIND (MWL criteria)</text>
+  <path d="M380 385 C445 385,445 405,380 405" fill="none" class="msg"/><text x="395" y="395" class="label">Transform criteria into FHIR queries</text>
+  <text x="395" y="430" class="note">Resolve Task -&gt; RequestedProcedure -&gt;</text><text x="395" y="448" class="note">ImagingServiceRequest / Patient / Device / ImagingStudy</text>
+  <path d="M380 460 C445 460,445 480,380 480" fill="none" class="msg"/><text x="395" y="470" class="label">Transform FHIR results into DICOM attributes</text>
+  <line x1="380" y1="490" x2="625" y2="490" class="ret"/><text x="502" y="483" text-anchor="middle" class="label">DICOM C-FIND-RSP (MWL entry)</text>
+  <rect x="15" y="510" width="960" height="80" class="group"/><text x="30" y="533" class="group-title">Use case 3: Reconcile acquired images and performed work</text>
+  <line x1="625" y1="560" x2="867" y2="560" class="msg"/><text x="746" y="553" text-anchor="middle" class="label">DICOM study (images)</text>
+  <line x1="625" y1="580" x2="380" y2="580" class="msg"/><text x="502" y="573" text-anchor="middle" class="label">Completion / status information</text>
+  <rect x="15" y="605" width="960" height="95" class="group"/><text x="30" y="628" class="group-title">Use case 4: Communicate order status (RAD-3 / RAD-4)</text>
+  <line x1="380" y1="660" x2="135" y2="660" class="ret"/><text x="257" y="653" text-anchor="middle" class="label">RAD3OrderStatusUpdateBundle</text>
+  <line x1="380" y1="685" x2="867" y2="685" class="msg"/><text x="623" y="678" text-anchor="middle" class="label">Procedure / study reconciliation</text>
 </svg>

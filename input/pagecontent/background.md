@@ -15,23 +15,6 @@ The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices wit
 
 The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from equivalent FHIR resources is not.
 
-### Profile-aligned workflow<a name="profile-aligned-workflow"></a>
-
-The following workflow shows how the actors and transactions in this guide fit
-together, excluding MPPS:
-
-<figure>
-  {% include imaging_service_request_workflow.svg %}
-  <figcaption><b>Figure: Imaging Service Request workflow (excluding MPPS)</b></figcaption>
-  <p></p>
-</figure>
-
-The diagram source is
-`input/images-source/imaging_service_request_workflow.plantuml`. It represents
-the order and MWL portions covered by this guide and identifies acquisition
-completion, FHIR state reconciliation, and EHR status communication as
-integration points rather than a single fully specified end-to-end transaction.
-
 ### Scope<a name="scope"></a>
 
 #### In Scope
@@ -40,7 +23,7 @@ integration points rather than a single fully specified end-to-end transaction.
   * Imaging Service Request as ServiceRequest
   * Requested Procedure as either a ServiceRequest
   * Scheduled Procedure Step as Task
-  * Modality Performed Procedure Step as Task
+  * Performed Procedure Step as Task (profile available; MPPS workflow is excluded from the diagram)
 * Content maps
   * ORM, OMI, OMG to Imaging Service Request and child resources
   * Imaging Service Request to DICOM MWL C-FIND RSP
@@ -74,7 +57,9 @@ RAD-3 status update is represented by `RAD3OrderStatusUpdateBundle`.
 
 #### Transactions
 
-The following SWF transactions are relevant to this profile.
+The following SWF transactions are relevant to this profile. The FHIR
+operations and profiles that support them are described below; this guide does
+not define an operation for every SWF transaction.
 
 ##### Placer Order Management \[RAD-2\]
 
@@ -105,29 +90,92 @@ The following SWF transactions are relevant to this profile.
 
 ### Mapping to FHIR Operations
 
-This implementation guide includes FHIR operations to cover:
-* Creation of orders from Order Placer to DSS / Order Filler (\[RAD-2\])
-* Cancellation of orders by the Order Placer (\[RAD-2\])
-* Provision of order details and status updates from DSS / Order Filler to Order Placer (\[RAD-3\]) and the Image Archive / Image Manager (\[RAD-4\] / \[RAD-13\])
+This implementation guide defines the following FHIR operations and exchange
+profiles:
 
-The following SWF transactions are not modelled in FHIR:
+* `$create-order` — invoked by the EHR / EMR Order Placer on the RIS / DSS /
+  Order Filler to submit a RAD-2 `CreateOrderRequestBundle`. The RIS creates
+  and owns the resulting FHIR resources and returns an acknowledgement rather
+  than the newly created MWL resources.
+* `$cancel-order` — invoked against the RIS-owned `ServiceRequest` to represent
+  cancellation by the Order Placer under RAD-2.
+* `RAD3OrderStatusUpdateBundle` — a bundle profile for a later RIS / DSS /
+  Order Filler status update to the EHR / EMR Order Placer. This is a profile,
+  not a separately defined FHIR operation.
+* RAD-4 / RAD-13 resource mappings — the profiles and resource relationships
+  needed for RIS / DSS / Order Filler procedure and study reconciliation with
+  the Image Archive / Image Manager. These are integration points, not
+  separately defined FHIR operations.
+
+The following SWF transactions are not modeled as FHIR operations:
 
 * Schedule Procedure and / or Assign Protocol
   * It is expected that the MWL service can populate this information based on the order creation request
   * The mechanism by which it does so is out of scope
 * Modality Worklist Query
   * Modality Worklist Query remains a DICOM operation
-  * The operation by which the Order Filler and Image Manage / Image Archive retrieve order details may be a suitable basis for this query
+  * The RIS retrieves its owned FHIR resources to produce the DICOM C-FIND-RSP
+* Modality acquisition completion and performed-work reconciliation
+  * The modality-to-RIS completion mechanism is implementation-dependent
+  * The RIS may update `ImagingStudy`, `Procedure`, and performed-procedure-step resources
 
 ### Use cases<a name="use-cases"></a>
 
-Two use cases were identified.
+The following workflow shows how the actors and transactions in this guide fit
+together, excluding MPPS:
 
-#### Use case 1: Populate DICOM MWL C-FIND information model from FHIR resources
+<figure>
+  {% include imaging_service_request_workflow.svg %}
+  <figcaption><b>Figure: Imaging Service Request workflow (excluding MPPS)</b></figcaption>
+  <p></p>
+</figure>
 
-#### Use case 2: Reconcile DICOM images against FHIR order information
+The diagram source is
+`input/images-source/imaging_service_request_workflow.plantuml`.
 
-#### Use case 3: FHIR-based MWL query
+#### Use case 1: Create an imaging order
+
+1. The EHR / EMR Order Placer invokes `$create-order` on the RIS using a RAD-2
+   `CreateOrderRequestBundle`. The bundle contains:
+   * one RAD-2 `ImagingServiceRequest` order-level `ServiceRequest`, without a
+     Filler Order Number;
+   * one or more `ImagingRequestedProcedureProfile` resources;
+   * the associated Patient and, when applicable, Encounter resources; and
+   * optional requester and performing-organization resources.
+2. The RIS processes the request and creates and owns the resulting FHIR
+   resources needed for the order and MWL entry, including the
+   `ImagingServiceRequest`, requested procedure, patient, encounter,
+   scheduled-procedure-step `Task`, scheduled-station `Device`, and associated
+   `ImagingStudy`.
+
+The operation returns an acknowledgement; the newly created MWL resources are
+not returned at this stage.
+
+#### Use case 2: Populate and query the modality worklist
+
+1. The modality issues a DICOM C-FIND query to the RIS. The RIS transforms the
+   DICOM matching and return-key criteria into a set of FHIR queries against
+   its owned resources.
+2. The RIS resolves the scheduled `Task` and its references to the requested
+   procedure, `ImagingServiceRequest`, patient, encounter, scheduled station,
+   and `ImagingStudy`. It transforms the matching FHIR resources into the
+   corresponding DICOM C-FIND-RSP worklist entry and returns it to the
+   modality.
+
+#### Use case 3: Reconcile acquired images and performed work
+
+The modality sends the acquired study to the Image Archive / Image Manager and
+provides completion or status information to the RIS through an
+implementation-dependent integration. The RIS reconciles the performed work
+and may update `ImagingStudy`, `Procedure`, and performed-procedure-step
+resources.
+
+#### Use case 4: Communicate order status
+
+The RIS communicates the current order status back to the EHR / EMR through a
+RAD-3 status update represented by `RAD3OrderStatusUpdateBundle`. The RIS also
+supports procedure and study reconciliation with the Image Archive / Image
+Manager for RAD-4 / RAD-13 integration.
 
 ### Glossary<a name="glossary"></a>
 
