@@ -161,8 +161,8 @@ Usage:          #definition
     * display = "Placer Order Number"
     * target[0]
       * relationship = #equivalent
-      * code = #imaging-service-request.identifier
-      * display = "ImagingServiceRequest.identifier[placerOrder]"
+      * code = #imaging-service-request.basedOn
+      * display = "ImagingServiceRequest.basedOn[placerOrderRef].identifier"
       * dependsOn[0]
         * attribute = #IdentifierType
         * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC
@@ -172,7 +172,7 @@ Usage:          #definition
       * dependsOn[2]
         * attribute = #Transaction
         * valueCode = #RAD-3
-      * comment = "RAD-2: valued by the Order Placer on the New Order message. RAD-3: omitted on the DSS/Order Filler's New Order message and valued by the Order Placer in the ORR/ORG acknowledgement"
+      * comment = "RAD-2: valued by the Order Placer on the New Order message. RAD-3: omitted on the DSS/Order Filler's New Order message and valued by the Order Placer in the ORR/ORG acknowledgement. Carried as a logical reference (identifier only) on ImagingServiceRequest.basedOn, since the RAD-2 order itself is not modeled as a FHIR resource in this IG."
   * element[2]
     * code = #ORC-3
     * display = "Filler Order Number"
@@ -289,8 +289,9 @@ Usage:          #definition
     * display = "Placer Order Number"
     * target[0]
       * relationship = #equivalent
-      * code = #imaging-service-request.identifier
-      * display = "ImagingServiceRequest.identifier[placerOrder]"
+      * code = #imaging-service-request.basedOn
+      * display = "ImagingServiceRequest.basedOn[placerOrderRef].identifier"
+      * comment = "Carried as a logical reference (identifier only) on ImagingServiceRequest.basedOn, since the RAD-2 order itself is not modeled as a FHIR resource in this IG."
       * dependsOn[0]
         * attribute = #Transaction
         * valueCode = #RAD-2

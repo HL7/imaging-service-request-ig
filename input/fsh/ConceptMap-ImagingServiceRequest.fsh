@@ -214,11 +214,9 @@ Usage:          #definition
   * display = "DICOM Placer Order Number / Imaging Service Request (0040,2016)"
   * target[0]
     * relationship = #equivalent
-    * code = #identifier
-    * display = "ImagingServiceRequest.identifier"
-    * dependsOn[0]
-      * attribute = #IdentifierType
-      * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC
+    * code = #basedOn
+    * display = "ImagingServiceRequest.basedOn[placerOrderRef].identifier"
+    * comment = "Logical reference only; the RAD-2 order is not modeled as a FHIR resource in this IG."
   * target[1]
     * relationship = #source-is-broader-than-target
     * code = #OBR-2
@@ -228,11 +226,9 @@ Usage:          #definition
   * display = "DICOM Order Placer Identifier Sequence (0040,0026)"
   * target[0]
     * relationship = #equivalent
-    * code = #identifier
-    * display = "ImagingServiceRequest.identifier"
-    * dependsOn[0]
-      * attribute = #IdentifierType
-      * valueCoding = http://terminology.hl7.org/CodeSystem/v2-0203#PLAC
+    * code = #basedOn
+    * display = "ImagingServiceRequest.basedOn[placerOrderRef].identifier"
+    * comment = "Logical reference only; the RAD-2 order is not modeled as a FHIR resource in this IG."
   * target[1]
     * relationship = #equivalent
     * code = #OBR-2

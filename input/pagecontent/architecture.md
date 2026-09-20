@@ -29,11 +29,11 @@ Each MWL entry corresponds to a Scheduled Procedure Step, modeled as a Task reso
 
 4. From the parent `ImagingServiceRequestProfile`, read:
    - `identifier[accessionNumber]`
-   - `identifier[placerOrder]`
    - `identifier[fillerOrder]`
+   - `basedOn[placerOrderRef].identifier` (logical reference to the RAD-2 Placer Order; not a resolvable FHIR resource)
    - `subject` -> `ImagingPatientProfile`
    - This provides the ordering and accession identifiers needed for the MWL entry.
-   - **Note:** `identifier[fillerOrder]` is populated once the DSS/Order Filler has processed the order (RAD-3); it is absent on a freshly-submitted RAD-2 order. `CreateOrderRequestBundle` enforces this via an invariant on its `imagingServiceRequest` entry rather than a separate profile, since both states are the same resource at different points in its lifecycle.
+   - **Note:** `identifier[fillerOrder]` is populated once the DSS/Order Filler has processed the order (RAD-3); it is absent on a freshly-submitted RAD-2 order. `CreateOrderRequestBundle` enforces this via an invariant on its `imagingServiceRequest` entry rather than a separate profile, since both states are the same resource at different points in its lifecycle. The Placer Order Number is always available (it is assigned when the order is first placed on RAD-2), but since the RAD-2 order is not modeled as a FHIR resource in this IG, it is carried via `basedOn[placerOrderRef]` as a logical reference (an `Identifier` of type `PLAC`, with no resolvable `reference`) rather than as an `identifier` on `ImagingServiceRequestProfile` itself.
 
 5. If the Study Instance UID is needed, resolve the associated **ImagingStudy**:
    - Use `ImagingStudy.basedOn` referencing the same `ImagingServiceRequestProfile` and/or the same Requested Procedure.
