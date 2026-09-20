@@ -1,3 +1,21 @@
+### DICOM Modality Worklist (MWL) Information Model<a name="mwl-information-model"></a>
+
+While each DICOM MWL entry is represented in FHIR as a single `Task` resource, the MWL entry is conceptually composed of multiple related resources. The following table shows the DICOM MWL information model and its corresponding FHIR resources:
+
+<figure>
+  {% include mwl_information_model.svg %}
+  <figcaption><b>Figure: Modality Worklist Information Model\n(DICOM PS3.4 Figure K.6-1, annotated with FHIR resource mappings)</b></figcaption>
+  <p></p>
+</figure>
+
+However, in a typical workflow, each Imaging Service Request includes only a single Requested Procedure:
+
+<figure>
+  {% include mwl_information_model_simplified.svg %}
+  <figcaption><b>Figure: Modality Worklist Information Model (simplified)</b></figcaption>
+  <p></p>
+</figure>
+
 ### Structure of a Modality Worklist Query Response<a name="mwl-structure"></a>
 
 Each Modality Worklist Entry / MWL Query Response contains the following segments:

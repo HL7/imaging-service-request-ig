@@ -1,0 +1,21 @@
+@startuml mwl_information_model
+title Modality Worklist Information Model (Simplified)
+
+hide circle
+hide empty members
+
+class "Scheduled Procedure Step\n(Task)" as scheduled_procedure_step
+
+class "Imaging Service Request / Requested Procedure\n(ServiceRequest)" as imaging_service_request
+
+class "Patient" as patient
+
+class "Visit\n(Encounter)" as visit
+
+scheduled_procedure_step "0..n" -- "1" imaging_service_request : basedOn >
+
+imaging_service_request "0..n" -- "1" visit : encounter >
+
+imaging_service_request "0..n" -- "1" patient : subject >
+
+@enduml
