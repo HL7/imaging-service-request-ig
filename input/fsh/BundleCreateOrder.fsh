@@ -12,7 +12,7 @@ Description:    "Bundle submitted as the `order` input parameter of the $create-
 * ^abstract = false
 * type = #collection
 * entry ^slicing.discriminator.type = #profile
-* entry ^slicing.discriminator.path = "resource"
+* entry ^slicing.discriminator.path = "$this"
 * entry ^slicing.rules = #open
 * entry ^slicing.ordered = false
 * entry ^slicing.description = "Slice by resource type contained in the create-order request"
@@ -82,7 +82,7 @@ Description:    "RIS-owned bundle containing a resulting MWL entry/entries (Imag
 * ^abstract = false
 * type = #collection
 * entry ^slicing.discriminator.type = #profile
-* entry ^slicing.discriminator.path = "resource"
+* entry ^slicing.discriminator.path = "$this"
 * entry ^slicing.rules = #open
 * entry ^slicing.ordered = false
 * entry ^slicing.description = "Slice by resource type contained in the order result bundle"
