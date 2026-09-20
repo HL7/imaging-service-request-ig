@@ -15,6 +15,23 @@ The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices wit
 
 The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from equivalent FHIR resources is not.
 
+### Profile-aligned workflow<a name="profile-aligned-workflow"></a>
+
+The following workflow shows how the actors and transactions in this guide fit
+together, excluding MPPS:
+
+<figure>
+  {% include imaging_service_request_workflow.svg %}
+  <figcaption><b>Figure: Imaging Service Request workflow (excluding MPPS)</b></figcaption>
+  <p></p>
+</figure>
+
+The diagram source is
+`input/images-source/imaging_service_request_workflow.plantuml`. It represents
+the order and MWL portions covered by this guide and identifies acquisition
+completion, FHIR state reconciliation, and EHR status communication as
+integration points rather than a single fully specified end-to-end transaction.
+
 ### Scope<a name="scope"></a>
 
 #### In Scope
@@ -42,12 +59,13 @@ This Implementation Guide is intended for
 
 #### Actors
 
-The following SWF actors are relevant to this profile:
+The actors shown in the workflow are:
 
-* Order Placer
-* Department System Scheduler / Order Filler (DSS)
-* Image Manager / Image Archive
-* Acquisition Modality
+* EHR / EMR (Order Placer)
+* RIS (DSS / Order Filler)
+* FHIR service (MWL data)
+* Modality (Acquisition Modality)
+* Image Archive / Image Manager
 
 #### Transactions
 
