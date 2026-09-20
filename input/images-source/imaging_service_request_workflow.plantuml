@@ -8,22 +8,29 @@ participant "RIS\n(DSS / Order Filler)" as ris
 participant "Modality\n(Acquisition Modality)" as modality
 participant "Image archive /\nImage Manager" as archive
 
-group RAD-2: create order
+group Use case 1: Create an imaging order (RAD-2)
   ehr -> ris: $create-order\n(RAD-2 CreateOrderRequestBundle)
   note right of ris
-    ServiceRequest (ImagingServiceRequest)
-    ServiceRequest (RequestedProcedure)
-    Patient / Encounter
+    Bundle contains:
+    - RAD-2 ImagingServiceRequest
+      (no Filler Order Number)
+    - one or more RequestedProcedure
+    - Patient and optional Encounter
+    - optional requester and performing Organization
   end note
+  ris -> ris: Create and own order/MWL resources\n(Task, Device, ImagingStudy, etc.)
   note over ris
     RIS creates and owns the resulting FHIR resources,
     including the scheduled Task / MWL entry.
   end note
+  ris --> ehr: Acknowledgement\n(no MWL resources returned)
 end
 
-group RAD-5: query modality worklist
+group Use case 2: Populate and query the modality worklist (RAD-5)
   modality -> ris: DICOM C-FIND\n(MWL query parameters)
+  ris -> ris: Transform MWL criteria into\nFHIR queries
   note right of ris
+    FHIR queries resolve:
     Task (scheduled procedure step)
       -> RequestedProcedure
       -> ImagingServiceRequest
@@ -31,16 +38,17 @@ group RAD-5: query modality worklist
       -> Device (scheduled station)
       -> ImagingStudy (Study Instance UID)
   end note
+  ris -> ris: Transform FHIR query results into\nDICOM MWL attributes
   ris --> modality: DICOM C-FIND-RSP\n(MWL entry)
 end
 
-group Acquisition and reconciliation
+group Use case 3: Reconcile acquired images and performed work
   modality -> archive: DICOM study\n(images)
   modality -> ris: Completion / status information\n(DICOM or local integration)
   ris -> ris: Record performed work\n(optional Procedure) and update ImagingStudy
 end
 
-group RAD-3 / RAD-4 status communication
+group Use case 4: Communicate order status (RAD-3 / RAD-4)
   ris --> ehr: RAD-3 status update\n(RAD3OrderStatusUpdateBundle)
   ris -> archive: Procedure/study reconciliation\n(RAD-4 / RAD-13)
 end
