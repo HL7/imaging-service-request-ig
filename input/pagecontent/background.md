@@ -23,13 +23,13 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
   * Imaging Service Request as ServiceRequest
   * Requested Procedure as either a ServiceRequest
   * Scheduled Procedure Step as Task
+  * Modality Performed Procedure Step as Task
 * Content maps
   * ORM, OMI, OMG to Imaging Service Request and child resources
   * Imaging Service Request to DICOM MWL C-FIND RSP
 
 #### Out of Scope
 
-* Mapping DICOM MPPS to FHIR
 * Modelling entire image ordering workflow
 
 ### Intended Readers<a name="readers"></a>

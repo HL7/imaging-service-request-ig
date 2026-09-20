@@ -1,7 +1,7 @@
 Instance: RisCapabilityStatement
 InstanceOf: CapabilityStatement
 Usage: #definition
-Description: "The CapabilityStaement of the RIS interface to the MWL"
+Description: "The CapabilityStatement of the RIS interface to the MWL"
 * url = "http://RIS"
 * version = "0.0.1"
 * title = "RIS CapabilityStatement"
@@ -17,7 +17,7 @@ Description: "The CapabilityStaement of the RIS interface to the MWL"
   * operation[+]
     * name = #create-order
     * definition = Canonical( CreateOrderOperation )
-    * documentation = "Creates a new MWL entry based on a provided ImagingServicerequest and RequestedProcedureServiceReuests"
+    * documentation = "Creates a new MWL entry based on a provided ImagingServiceRequest and RequestedProcedureServiceRequests"
   * resource[+]
     * type = #ServiceRequest
     * interaction[+]
@@ -25,7 +25,7 @@ Description: "The CapabilityStaement of the RIS interface to the MWL"
     * operation[+]
       * name = #cancel-order
       * definition = Canonical( CancelOrderOperation )
-      * documentation = "Cancels a MWL entry based on a provided ImagingServicerequest and RequestedProcedureServiceReuests"
+      * documentation = "Cancels a MWL entry based on a provided ImagingServiceRequest and RequestedProcedureServiceRequests"
   * resource[+]
     * type = #Task
     * profile = Canonical( ImagingScheduledProcedureStepProfile )
