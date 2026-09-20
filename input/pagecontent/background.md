@@ -9,13 +9,13 @@ and describes the use cases supported by this implementation guide.
 6. [Glossary](#glossary) - Glossary of terms used in this IG
 7. [References](#references) - Useful references
 
-### Problem<a name="problem"></a>
+### Problem {#problem}
 
 The DICOM Modality Worklist (MWL) service provides DICOM acquisition devices with information from the ordering system (patient, visit, procedure, etc.).
 
 The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. However, the mapping from equivalent FHIR resources is not.
 
-### Scope<a name="scope"></a>
+### Scope {#scope}
 
 #### In Scope
 
@@ -32,7 +32,7 @@ The mapping between HL7 V2 and DICOM Modality Worklist (MWL) is well-defined. Ho
 
 * Modeling entire image ordering workflow
 
-### Intended Readers<a name="readers"></a>
+### Intended Readers {#readers}
 
 This Implementation Guide is intended for
 
@@ -41,7 +41,7 @@ This Implementation Guide is intended for
 * Modality Worklist Manager vendors and implementers who want to expose a DICOM MWL service and query RIS-owned FHIR resources on behalf of acquisition modalities
 * Modality vendors and implementers who want to query a DICOM MWL service for scheduled procedures
 
-### Relationship to IHE Scheduled Workflow<a name="ihe-scheduled-workflow"></a>
+### Relationship to IHE Scheduled Workflow {#ihe-scheduled-workflow}
 
 #### Actors
 
@@ -124,7 +124,7 @@ The following SWF transactions are not modeled as FHIR operations:
   * The modality-to-RIS completion mechanism is implementation-dependent
   * The RIS may update `ImagingStudy`, `Procedure`, and performed-procedure-step resources
 
-### Use cases<a name="use-cases"></a>
+### Use cases {#use-cases}
 
 The following workflow shows how the actors and transactions in this guide fit
 together:
@@ -185,7 +185,7 @@ RAD-3 status update represented by `RAD3OrderStatusUpdateBundle`. The RIS also
 supports procedure and study reconciliation with the Image Archive / Image
 Manager for RAD-4 / RAD-13 integration.
 
-### Glossary<a name="glossary"></a>
+### Glossary {#glossary}
 
 The following terms and acronyms are used within this Implementation Guide:
 
@@ -230,7 +230,7 @@ The following terms and acronyms are used within this Implementation Guide:
 |C-FIND| DICOM query operation |
 |C-FIND-RSP| DICOM query response |
 
-### References<a name="references"></a>
+### References {#references}
 
 1. DICOM,[DICOM PS3.4 Section K.6: Modality Worklist SOP Class](https://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_K.6.html)
 2. IHE Radiology (RAD), [HL7 Order Mapping to DICOM MWL)](https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol2x.pdf), Appendix B
@@ -238,3 +238,23 @@ The following terms and acronyms are used within this Implementation Guide:
 4. HL7 IG [HL7 Version 2 to FHIR](https://build.fhir.org/ig/HL7/v2-to-fhir/)
 5. HL7 IG [Clinical Order Worfklows Implementation Guide](https://build.fhir.org/ig/HL7/fhir-cow-ig/)
 6. HL7 IG [Order Catalog Implementation Guide](https://build.fhir.org/ig/HL7/fhir-order-catalog/)
+
+### IG Dependencies
+
+This IG Contains the following dependencies on other IGs.
+
+{% include dependency-table-short-en.xhtml %}
+
+### Global Profiles
+
+{% include globals-table-en.xhtml %}
+
+### Copyrights
+
+{% capture ip-statement %}{% include ip-statements-en.xhtml %}{% endcapture %}
+
+{{ ip-statement | remove: '<p>' | remove: '</p>'}}
+
+### Expansion Parameters
+
+{% include expansion-params-en.xhtml %}
