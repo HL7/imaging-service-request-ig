@@ -1,3 +1,21 @@
+### DICOM Modality Worklist (MWL) Information Model<a name="mwl-information-model"></a>
+
+While each DICOM MWL entry is represented in FHIR as a single `Task` resource, the MWL entry is conceptually composed of multiple related resources. The following table shows the DICOM MWL information model and its corresponding FHIR resources:
+
+<figure>
+  {% include mwl_information_model.svg %}
+  <figcaption><b>Figure: Modality Worklist Information Model\n(DICOM PS3.4 Figure K.6-1, annotated with FHIR resource mappings)</b></figcaption>
+  <p></p>
+</figure>
+
+However, in a typical workflow, each Imaging Service Request includes only a single Requested Procedure:
+
+<figure>
+  {% include mwl_information_model_simplified.svg %}
+  <figcaption><b>Figure: Modality Worklist Information Model (simplified)</b></figcaption>
+  <p></p>
+</figure>
+
 ### Structure of a Modality Worklist Query Response<a name="mwl-structure"></a>
 
 Each Modality Worklist Entry / MWL Query Response contains the following segments:
@@ -69,7 +87,18 @@ This preserves the intended MWL structure:
 
 ### Relationship to the Performed Procedure<a name="mwl-procedure-relationship"></a>
 
-The DICOM Modality Worklist itself only describes *scheduled* work; it does not carry information about the *performed* procedure. Once a Scheduled Procedure Step has been carried out, its fulfillment can optionally be represented as a FHIR `Procedure` resource (`ImagingProcedureProfile`). This profile only constrains how `Procedure` relates to the other MWL resources — it does not model DICOM Performed Procedure Step (MPPS) content, which is out of scope for RAD-2/RAD-3 and this IG.
+The DICOM Modality Worklist itself only describes *scheduled* work; it does not carry information about the *performed* procedure. Once a Scheduled Procedure Step has been carried out, its execution can be represented as a FHIR `Task` resource (`ImagingPerformedProcedureStepProfile`) that records the actual execution period. Both scheduled and performed procedure-step profiles derive from the abstract `ImagingProcedureStepProfile`, which supplies their common requested-procedure linkage, patient and encounter context, procedure code, modality, and order-derived Task intent.
+
+The performed-step Task and the scheduled-step Task both reference the same Requested Procedure. The performed-step Task is not part of the MWL query/response.
+
+```
+Task (ImagingPerformedProcedureStepProfile)
+  -> basedOn[requestedProcedureRef] -> RequestedProcedure
+  -> for -> Patient
+  -> encounter -> Visit
+```
+
+The clinical act may additionally be represented as a FHIR `Procedure` resource (`ImagingProcedureProfile`):
 
 ```
 Procedure (ImagingProcedureProfile)
@@ -78,4 +107,4 @@ Procedure (ImagingProcedureProfile)
   -> encounter -> Visit
 ```
 
-`Procedure` is not part of the MWL query/response itself and is not referenced by `Task`; it is a downstream resource that an implementer may create after the scheduled procedure step has been performed, linked back to the same `RequestedProcedure` that the `Task` is `basedOn`.
+`Procedure` is not part of the MWL query/response itself and is not referenced by `Task`; it is a downstream resource that an implementer may create after the scheduled procedure step has been performed, linked back to the same `RequestedProcedure` that the Tasks are `basedOn`.
